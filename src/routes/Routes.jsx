@@ -8,18 +8,13 @@ import Header from '../components/Header/Header';
 
 const Routes = () => (
     <Router>
-        {/*AuthProvider og Container her?*/}
+        {/*AuthProvider og AppContainer her?*/}
 
         <Header/>
-
         <AppContainer>
             <Switch>
-
-                <Route exact path={"/"}>
-                    <Login/>
-                </Route>
-                <Route path={"*"} component={NotFound}/>
-
+                <Route exact path={"/"} component={Login} />
+                <Route path={"*"} component={NotFound} />
             </Switch>
         </AppContainer>
     </Router>

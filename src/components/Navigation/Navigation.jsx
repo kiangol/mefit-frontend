@@ -11,7 +11,7 @@ const Navigation = () => {
                 <NavLink exact to={"/"} activeClassName={"active"} className={styles.navItem}>
                     Login
                 </NavLink>
-                <NavLink exact to={"/hehehe"} activeClassName={"active"} className={styles.navItem}>
+                <NavLink exact to={"/notfound"} activeClassName={"active"} className={styles.navItem}>
                     Error
                 </NavLink>
             </nav>
