@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from '../pages/Login.jsx';
 import NotFound from "../pages/NoMatch";
 import AppContainer from "../hoc/AppContainer";
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 const Routes = () => (
     <Router>
