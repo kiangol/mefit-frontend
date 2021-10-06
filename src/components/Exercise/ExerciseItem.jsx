@@ -3,7 +3,7 @@ import React from 'react';
 const ExerciseItem = ({ list }) => (
     <ul>
         {list.map((exercise) => (
-            <li>
+            <li key={exercise.exerciseId}>
                 <p><b>ID:</b> {exercise.exerciseId}</p>
                 <p><b>Name:</b> {exercise.name}</p>
                 <p><b>Description:</b> {exercise.description}</p>
