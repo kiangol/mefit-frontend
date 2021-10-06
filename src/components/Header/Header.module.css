@@ -1,3 +1,17 @@
 .Header {
     background: #284b63;
+    display: flex;
+    flex-direction: row;
+    font-size: larger;
+    color: whitesmoke;
+}
+
+.userAndLogoutDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.userAndLogoutDiv_User:hover {
+    cursor: pointer;
+    transform: scale(1.04);
 }
