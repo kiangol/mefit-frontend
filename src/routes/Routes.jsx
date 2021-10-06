@@ -14,9 +14,9 @@ const Routes = () => (
         <Header/>
         <AppContainer>
             <Switch>
-                <Route exact path={"/"} component={Login} />
-                <Route exact path={"/register"} component={Register} />
-                <Route path={"*"} component={NotFound} />
+                <Route exact path={"/"} component={Login}/>
+                <Route exact path={"/register"} component={Register}/>
+                <Route path={"*"} component={NotFound}/>
             </Switch>
         </AppContainer>
     </Router>

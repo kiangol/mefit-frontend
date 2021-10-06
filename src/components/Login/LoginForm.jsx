@@ -14,7 +14,6 @@ const LoginForm = ({onRegisterNewUserClick}) => {
             ...credentials,
             [event.target.id]: event.target.value
         })
-
         loginAttemptAction(credentials);
     }
 
@@ -45,7 +44,8 @@ const LoginForm = ({onRegisterNewUserClick}) => {
                 </div>
 
                 <button type={"submit"} className={"btn btn-primary btn-lg"}>Login</button>
-                <button type={"button"} className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Sign up</button>
+                <button type={"button"} className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Sign up
+                </button>
             </form>
         </>
     );

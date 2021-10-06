@@ -4,13 +4,13 @@ import React, {useState} from "react";
 const RegisterForm = () => {
 
     //Ha med adresse i denne?
-    const [ credentials, setCredentials ] = useState({
+    const [credentials, setCredentials] = useState({
         username: '',
         password: '',
         firstName: "",
         lastName: ""
     })
-    const [ address, setAddress ] = useState({
+    const [address, setAddress] = useState({
         addressLine1: "",
         addressLine2: "",
         addressLine3: "",
@@ -41,10 +41,10 @@ const RegisterForm = () => {
                 <div className={"mb-3"}>
                     <label htmlFor={"username"} className={"form-label"}>Username</label>
                     <input id={"username"}
-                        type={"text"}
-                        placeholder={"Enter username"}
-                        className={"form-control"}
-                        onChange={onCredentialsChange}
+                           type={"text"}
+                           placeholder={"Enter username"}
+                           className={"form-control"}
+                           onChange={onCredentialsChange}
                     />
                 </div>
 
