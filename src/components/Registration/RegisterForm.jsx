@@ -1,7 +1,11 @@
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {loginAttemptAction} from "../../store/actions/loginActions";
 
 
 const RegisterForm = () => {
+
+    const dispatch = useDispatch();
 
     //Ha med adresse i denne?
     const [credentials, setCredentials] = useState({
@@ -33,9 +37,19 @@ const RegisterForm = () => {
         })
     }
 
+    const onFormSubmit = event => {
+        event.preventDefault()
+        // Not sure what to send in upon registering a user.
+        // Should it be one object of the two user and addresso bjects,
+        // or just one profileobject?
+        // dispatch(registerAttemptAction(credentials))
+
+    }
+
+
     return (
         <>
-            <form className={"mt-3"}>
+            <form className={"mt-3"} onSubmit={onFormSubmit} >
                 <h1>Register a new user</h1>
 
                 <div className={"mb-3"}>

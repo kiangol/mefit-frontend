@@ -1,9 +1,11 @@
 import React, {useState} from "react"
 import {loginAttemptAction} from "../../store/actions/loginActions";
+import {useDispatch} from "react-redux";
+import {registerAttemptAction} from "../../store/actions/registerActions";
 
 const LoginForm = ({onRegisterNewUserClick}) => {
 
-
+    const dispatch = useDispatch();
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
@@ -17,9 +19,14 @@ const LoginForm = ({onRegisterNewUserClick}) => {
         loginAttemptAction(credentials);
     }
 
+    const onFormSubmit = event => {
+        event.preventDefault()
+        dispatch(loginAttemptAction(credentials))
+    }
+
     return (
         <>
-            <form className={"mt-3"}>
+            <form className={"mt-3"} onSubmit={onFormSubmit} >
                 <h1>Login to MeFit</h1>
                 <p>Welcome to MeFit, the place to get fit!</p>
 
