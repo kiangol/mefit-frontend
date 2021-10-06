@@ -19,10 +19,10 @@ const AllExercises = () => {
                 console.log("ERROR IN ALLEXERCISES: " + error);
                 setError(error);
             } else {
-                console.log(data.data)
-                //console.log(JSON.stringify(data.data))
+                //console.log(data.data)
+                //console.log(JSON.stringify(data.data()))
                 //console.log(JSON.parse(data.data))
-                //setExercises(data);
+                //setExercises(data.data);
             }
         };
         fetchData();
