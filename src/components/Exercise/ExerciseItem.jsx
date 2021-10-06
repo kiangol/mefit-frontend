@@ -4,12 +4,12 @@ const ExerciseItem = ({ list }) => (
     <ul>
         {list.map((exercise) => (
             <li>
-                <p>{exercise.exerciseId}</p>
-                <p>{exercise.name}</p>
-                <p>{exercise.description}</p>
-                <p>{exercise.targetMuscleGroup}</p>
-                <p>{exercise.image}</p>
-                <p>{exercise.vidLink}</p>
+                <p><b>ID:</b> {exercise.exerciseId}</p>
+                <p><b>Name:</b> {exercise.name}</p>
+                <p><b>Description:</b> {exercise.description}</p>
+                <p><b>Target Muscle Group:</b> {exercise.targetMuscleGroup}</p>
+                <p><b>Image Link:</b> {exercise.image}</p>
+                <p><b>Video Link:</b> {exercise.vidLink}</p>
             </li>
         ))}
     </ul>
