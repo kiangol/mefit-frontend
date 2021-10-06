@@ -1,7 +1,8 @@
 import React, {useState} from "react"
 import {loginAttemptAction} from "../../store/actions/loginActions";
 
-const LoginForm = () => {
+const LoginForm = ({onRegisterNewUserClick}) => {
+
 
     const [credentials, setCredentials] = useState({
         username: '',
@@ -44,6 +45,7 @@ const LoginForm = () => {
                 </div>
 
                 <button type={"submit"} className={"btn btn-primary btn-lg"}>Login</button>
+                <button type={"button"} className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Sign up</button>
             </form>
         </>
     );

@@ -141,6 +141,8 @@ const RegisterForm = () => {
                            onChange={onAddressChange}
                     />
                 </div>
+
+                <button type={"submit"} className={"btn btn-primary btn-lg"}>Register</button>
             </form>
 
         </>

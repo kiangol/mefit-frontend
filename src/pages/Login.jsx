@@ -12,8 +12,7 @@ const Login = () => {
 
     return (
         <>
-            <LoginForm/>
-            <button className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Register new User</button>
+            <LoginForm onRegisterNewUserClick={onRegisterNewUserClick}/>
         </>
     )
 };
