@@ -6,6 +6,7 @@ import NotFound from "../pages/NoMatch";
 import AppContainer from "../hoc/AppContainer";
 import Header from '../components/Header/Header';
 import Register from "../pages/Register";
+import AllExercises from "../pages/AllExercises";
 
 const Routes = () => (
     <Router>
@@ -16,7 +17,8 @@ const Routes = () => (
             <Switch>
                 <Route exact path={"/"} component={Login}/>
                 <Route exact path={"/register"} component={Register}/>
-                <Route path={"*"} component={NotFound}/>
+                <Route exact path={"/exercises"} component={AllExercises} />
+                <Route path={"*"} component={NotFound} />
             </Switch>
         </AppContainer>
     </Router>
