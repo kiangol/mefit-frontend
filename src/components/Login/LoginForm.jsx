@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import {loginAttemptAction} from "../../store/actions/loginActions";
 import {useDispatch} from "react-redux";
 import {registerAttemptAction} from "../../store/actions/registerActions";
+import KeycloakService from "../../services/KeycloakService";
 
 const LoginForm = ({onRegisterNewUserClick}) => {
 
@@ -21,7 +22,8 @@ const LoginForm = ({onRegisterNewUserClick}) => {
 
     const onFormSubmit = event => {
         event.preventDefault()
-        dispatch(loginAttemptAction(credentials))
+        //dispatch(loginAttemptAction(credentials))
+        KeycloakService.doLogin()
     }
 
     return (

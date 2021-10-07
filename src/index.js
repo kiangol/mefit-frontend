@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import store from './store';
 import KeycloakService from "./services/KeycloakService";
-import AppLoading from "./App/AppLoading";
+import AppLoading from "./AppLoading";
 ReactDOM.render(<AppLoading />, document.getElementById('root'));
 
 KeycloakService.initKeycloak(() => {

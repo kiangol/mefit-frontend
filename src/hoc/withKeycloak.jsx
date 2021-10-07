@@ -8,7 +8,7 @@ const withKeycloak = Component => props => {
     if (isLoggedIn) {
         return <Component {...props} />
     } else {
-        return <Redirect to="/login" />
+        return <Redirect to="/" />
     }
 
 }
