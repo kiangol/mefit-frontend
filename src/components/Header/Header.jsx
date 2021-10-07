@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 
 import Navigation from "../Navigation/Navigation";
 import {useHistory} from "react-router-dom";
+import KeycloakService from "../../services/KeycloakService";
 
 const Header = () => {
 
@@ -11,10 +12,20 @@ const Header = () => {
     let loggedIn = true;
 
     /*
-        When a reducer for the session is in place, this can be uncommented and
-        it'll hopefully work. Remember to remove the two let's above.
      const {loggedIn, name, id} = useSelector(state => state.sessionReducer)
      */
+
+    /*
+    const name = KeycloakService.getUsername()
+
+    const handleLogoutClick = () => {
+		if (window.confirm('Are you sure?')) {
+			KeycloakService.doLogout()
+		}
+	}
+     */
+
+
      const history = useHistory();
 
      const goToProfile = () => {
