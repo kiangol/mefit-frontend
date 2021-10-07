@@ -1,5 +1,5 @@
 import './App.css'
-import Routes from './routes/Routes.jsx';
+import Routes from '../routes/Routes.jsx';
 
 
 

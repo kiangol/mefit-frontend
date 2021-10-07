@@ -8,6 +8,7 @@ import Header from '../components/Header/Header';
 import Register from "../pages/Register";
 import AllExercises from "../pages/AllExercises";
 
+// Might redirect "/" to "/login"
 const Routes = () => (
     <Router>
         {/*AuthProvider og AppContainer her?*/}
