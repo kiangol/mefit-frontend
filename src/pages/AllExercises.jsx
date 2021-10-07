@@ -19,10 +19,7 @@ const AllExercises = () => {
                 console.log("ERROR IN ALLEXERCISES: " + error);
                 setError(error);
             } else {
-                //console.log(data.data)
-                //console.log(JSON.stringify(data.data()))
-                //console.log(JSON.parse(data.data))
-                //setExercises(data.data);
+                setExercises(data);
             }
         };
         fetchData();
@@ -37,7 +34,7 @@ const AllExercises = () => {
             )}
 
             <h1>DummyData:</h1>
-            <ExerciseItem list={exercisesDum}/>
+
         </>
     );
 };
