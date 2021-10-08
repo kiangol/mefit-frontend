@@ -8,28 +8,21 @@ import KeycloakService from "../../services/KeycloakService";
 
 const Header = () => {
 
-    let name = "MeFit User";
-    let loggedIn = true;
-
-    /*
-     const {loggedIn, name, id} = useSelector(state => state.sessionReducer)
-     */
-
-    /*
-    const name = KeycloakService.getUsername()
+    const loggedIn = KeycloakService.isLoggedIn();
+    const name = KeycloakService.getUsername();
 
     const handleLogoutClick = () => {
 		if (window.confirm('Are you sure?')) {
 			KeycloakService.doLogout()
 		}
-	}
-     */
+	};
+
 
 
      const history = useHistory();
 
      const goToProfile = () => {
-        history.push("/profiles") // history.push("/profiles" + id)
+        history.push("/profile") // history.push("/profiles" + id)
     }
 
     return (
@@ -43,7 +36,7 @@ const Header = () => {
                         <span onClick={goToProfile}>{name}</span>
                     </div>
                     <div>
-                        <button>Logout</button>
+                        <button type={"button"} onClick={handleLogoutClick}>Logout</button>
                     </div>
                 </div>
                 }
