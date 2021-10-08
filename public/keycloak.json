@@ -2,7 +2,7 @@
   "realm": "mefit",
   "auth-server-url": "https://security-mefit.herokuapp.com/auth/",
   "ssl-required": "external",
-  "resource": "mefit-client",
+  "resource": "mefit-test",
   "public-client": true,
   "confidential-port": 0
 }
