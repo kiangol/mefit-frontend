@@ -6,9 +6,15 @@ import NotFound from "../pages/NoMatch";
 import AppContainer from "../hoc/AppContainer";
 import Header from '../components/Header/Header';
 import Register from "../pages/Register";
-import AllExercises from "../pages/AllExercises";
+import Exercises from "../pages/Exercises";
+import Dashboard from "../pages/Dashboard";
+import Goals from "../pages/Goals";
+import Programs from "../pages/Programs";
+import Workouts from "../pages/Workouts";
+import Profile from "../pages/Profile";
+import Contributors from "../pages/Contributors";
 
-// Might redirect "/" to "/login"
+// Might redirect "/" to "/login" and have "/" as dashboard.
 const Routes = () => (
     <Router>
         {/*AuthProvider og AppContainer her?*/}
@@ -18,7 +24,13 @@ const Routes = () => (
             <Switch>
                 <Route exact path={"/"} component={Login}/>
                 <Route exact path={"/register"} component={Register}/>
-                <Route exact path={"/exercises"} component={AllExercises} />
+                <Route exact path={"/exercises"} component={Exercises} />
+                <Route exact path={"/dashboard"} component={Dashboard} />
+                <Route exact path={"/goals"} component={Goals} />
+                <Route exact path={"/programs"} component={Programs} />
+                <Route exact path={"/workouts"} component={Workouts} />
+                <Route exact path={"/profile"} component={Profile} />
+                <Route exact path={"/contributor"} component={Contributors} />
                 <Route path={"*"} component={NotFound} />
             </Switch>
         </AppContainer>

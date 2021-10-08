@@ -14,7 +14,7 @@ const Header = () => {
     const handleLogoutClick = () => {
 		if (window.confirm('Are you sure?')) {
 			KeycloakService.doLogout()
-		};
+		}
 	};
 
 
@@ -22,7 +22,7 @@ const Header = () => {
      const history = useHistory();
 
      const goToProfile = () => {
-        history.push("/profiles") // history.push("/profiles" + id)
+        history.push("/profile") // history.push("/profiles" + id)
     }
 
     return (
