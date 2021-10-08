@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {list} from "../api/ExerciseAPI";
 import ExerciseData from "../DummyData/ExerciseData";
 import ExerciseItem from "../components/Exercise/ExerciseItem";
+import withKeycloak from "../hoc/withKeycloak";
 
 
 const Exercises = () => {
@@ -39,4 +40,4 @@ const Exercises = () => {
     );
 };
 
-export default Exercises;
+export default withKeycloak(Exercises);
