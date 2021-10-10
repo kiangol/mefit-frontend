@@ -1,4 +1,4 @@
-/*import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
 import ExerciseItem from "../components/Exercise/ExerciseItem";
@@ -8,7 +8,7 @@ const Workouts = () => {
     const [workouts, setWorkouts] = useState();
     const [currentWorkouts, setCurrentWorkouts] = useState()
     const [workoutTypeMap, setWorkoutTypeMap] = useState()
-    const [workoutTypeMap, setWorkoutTypeMap] = useState()
+    //const [workoutTypeMap, setWorkoutTypeMap] = useState()
     const workoutGroupedByType = new Map();
     const workoutTypes = new Set();
 
@@ -66,4 +66,4 @@ const Workouts = () => {
     );
 }
 
-export default withKeycloak(Workouts);*/
+export default withKeycloak(Workouts);
