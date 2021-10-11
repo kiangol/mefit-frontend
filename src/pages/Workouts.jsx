@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
-import ExerciseItem from "../components/Exercise/ExerciseItem";
+import WorkoutItem from "../components/Workout/WorkoutItem";
 
 const Workouts = () => {
 
     const [workouts, setWorkouts] = useState();
     const [currentWorkouts, setCurrentWorkouts] = useState()
     const [workoutTypeMap, setWorkoutTypeMap] = useState()
-    //const [workoutTypeMap, setWorkoutTypeMap] = useState()
-    const workoutGroupedByType = new Map();
+    const [workoutMap, setWorkoutMap] = useState()
+    const [error, setError] = useState()
     const workoutTypes = new Set();
+    const workoutGroupedByType = new Map();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +21,7 @@ const Workouts = () => {
                 setError(error);
                 console.log(error);
             } else {
+                console.log("HELLO" + data)
                 setWorkouts(data);
                 setCurrentWorkouts(data);
                 for (let workout of data) {
@@ -33,20 +35,25 @@ const Workouts = () => {
                 workoutGroupedByType.set("Show all", data)
 
                 setWorkoutTypeMap(workoutGroupedByType)
-                setMuscleGroup(musclegroups);
+                setWorkoutMap(workoutTypes);
             }
         };
         fetchData();
     }, []);
+
+    const handleMuscleGroupSelect = event => {
+        console.log(workoutTypeMap.get("Show all"))
+        setCurrentWorkouts(workoutTypeMap.get(event.target.value))
+    }
 
     return (
         <>
             <main>
                 <select onChange={handleMuscleGroupSelect}>
                     <option key={"0"} value={"Show all"}>Show all</option>
-                    {muscleGroup &&
-                    [...muscleGroup].map((muscleGroup) => (
-                            <option key={muscleGroup} value={muscleGroup}>{muscleGroup}</option>
+                    {workoutMap &&
+                    [...workoutMap].map((type) => (
+                            <option key={type} value={type}>{type}</option>
                         )
                     )
                     }
@@ -54,7 +61,7 @@ const Workouts = () => {
                 <section>
                     <h1>Workouts</h1>
                     {currentWorkouts && (
-                        <ExerciseItem list={currentWorkouts}/>
+                        <WorkoutItem list={currentWorkouts}/>
                     )}
                 </section>
                 <section>

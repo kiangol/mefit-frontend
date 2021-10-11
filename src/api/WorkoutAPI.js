@@ -1,6 +1,6 @@
 import http from './http';
 
-const API_URL = '/workouts';
+const API_URL = '/workout';
 
 export const list = async () => {
     try {
