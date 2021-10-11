@@ -27,10 +27,10 @@ const Navigation = () => {
                     <NavLink exact to={"/dashboard"} activeClassName={"active"} className={styles.navItem}>
                         Dashboard
                     </NavLink>
-                    <NavLink exact to={"/Programs"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/programs"} activeClassName={"active"} className={styles.navItem}>
                         Programs
                     </NavLink>
-                    <NavLink exact to={"/Workouts"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/workouts"} activeClassName={"active"} className={styles.navItem}>
                         Workouts
                     </NavLink>
                     <NavLink exact to={"/exercises"} activeClassName={"active"} className={styles.navItem}>
