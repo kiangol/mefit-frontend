@@ -1,0 +1,29 @@
+.workoutCard {
+    width: 100%;
+    transition: 0.2s;
+    box-shadow: 2px 0 8px 2px rgba(0,0,0,0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.workoutCard__body {
+    padding: 1rem;
+}
+
+.workoutCard__image {
+    max-width: 20%;
+}
+
+.workout-icon {
+    padding: 1vh;
+}
+
+.workoutCard:hover {
+    box-shadow: 0 0 8px 8px rgba(0,0,0,0.1);
+    background: rgb(227, 254, 255);
+    /*background: linear-gradient(0deg, rgb(223, 252, 253) 0%, rgb(255, 247, 229) 100%);*/
+}
+
+.workoutCard:active {
+    box-shadow: 0 0 4px 10px rgba(0,150,0,0.2);
+}
