@@ -60,6 +60,12 @@ const Exercises = () => {
         setCurrentExercises(muscleGroupMap1.get(event.target.value));
     };
 
+    const openModal = exercise => {
+        console.log("CLICKED");
+        setClickedExercise(exercise);
+        console.log("SELECTED EXERCISE: " + exercise);
+        setShowModal(prev => !prev);
+    };
 
 // Legge muscle groups inn i et Set.
     return (
