@@ -6,9 +6,9 @@ const ExerciseItem = ({ list }) => (
         {list.map((exercise) => (
             <li key={exercise.id} className={styles.workoutCard}>
                 <div className={styles.workoutCard__body}>
-                    <p><b>Name:</b> {exercise.name}</p>
+                    <h1>{exercise.name}</h1>
                     <p><b>Target Muscle Group:</b> {exercise.targetMuscleGroup}</p>
-                    <p><b>Image Link:</b> {exercise.image}</p>
+                    <img className={styles.workoutCard__image} src={exercise.image} alt={exercise.name}/>
                 </div>
             </li>
         ))}
