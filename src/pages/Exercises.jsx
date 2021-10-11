@@ -49,8 +49,6 @@ const Exercises = () => {
     }
 
 
-
-
 // Legge muscle groups inn i et Set.
     return (
         <>
