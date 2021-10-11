@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
-import WorkoutItem from "../components/Workout/WorkoutItem";
+import WorkoutList from "../components/Workout/WorkoutList";
 
 const Workouts = () => {
 
@@ -21,7 +21,6 @@ const Workouts = () => {
                 setError(error);
                 console.log(error);
             } else {
-                console.log("HELLO" + data)
                 setWorkouts(data);
                 setCurrentWorkouts(data);
                 for (let workout of data) {
@@ -42,7 +41,6 @@ const Workouts = () => {
     }, []);
 
     const handleMuscleGroupSelect = event => {
-        console.log(workoutTypeMap.get("Show all"))
         setCurrentWorkouts(workoutTypeMap.get(event.target.value))
     }
 
@@ -61,7 +59,7 @@ const Workouts = () => {
                 <section>
                     <h1>Workouts</h1>
                     {currentWorkouts && (
-                        <WorkoutItem list={currentWorkouts}/>
+                        <WorkoutList list={currentWorkouts}/>
                     )}
                 </section>
                 <section>
