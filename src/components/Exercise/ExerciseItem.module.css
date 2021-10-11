@@ -1,29 +1,38 @@
-.workoutCard {
-    width: 100%;
+.exerciseCard {
+    width: 32%;
     transition: 0.2s;
     box-shadow: 2px 0 8px 2px rgba(0,0,0,0.1);
     border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem;
+    display: inline-grid;
+
 }
 
-.workoutCard__body {
+.exerciseCard__body {
     padding: 1rem;
 }
 
-.workoutCard__image {
-    max-width: 20%;
+.exerciseCard__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
-.workout-icon {
+.exerciseCard__icon {
     padding: 1vh;
 }
 
-.workoutCard:hover {
+.exerciseCard:hover {
     box-shadow: 0 0 8px 8px rgba(0,0,0,0.1);
-    background: rgb(227, 254, 255);
+    background: rgb(250, 250, 250);
     /*background: linear-gradient(0deg, rgb(223, 252, 253) 0%, rgb(255, 247, 229) 100%);*/
 }
 
-.workoutCard:active {
+.exerciseCard:active {
     box-shadow: 0 0 4px 10px rgba(0,150,0,0.2);
+}
+
+.exerciseList {
+    list-style-type: none;
+    padding: 0;
 }
