@@ -90,6 +90,9 @@ export const Modal = ({ showModal, setShowModal, exercise }) => {
                 setShowModal(false);
                 console.log('I pressed');
             }
+            if (e.key === 'A' && !showModal) {
+                setShowModal(true);
+            }
         },
         [setShowModal, showModal]
     );

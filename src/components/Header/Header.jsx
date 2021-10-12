@@ -9,21 +9,21 @@ import KeycloakService from "../../services/KeycloakService";
 const Header = () => {
 
     const loggedIn = KeycloakService.isLoggedIn();
-    const name = KeycloakService.getUsername();
+    const name = KeycloakService.getName();
+
 
     const handleLogoutClick = () => {
-		if (window.confirm('Are you sure?')) {
-			KeycloakService.doLogout()
-		}
-	};
+        if (window.confirm('Are you sure?')) {
+            KeycloakService.doLogout();
+        }
+    };
 
 
+    const history = useHistory();
 
-     const history = useHistory();
-
-     const goToProfile = () => {
-        history.push("/profile") // history.push("/profiles" + id)
-    }
+    const goToProfile = () => {
+        history.push("/profile"); // history.push("/profiles" + id)
+    };
 
     return (
         <>
@@ -42,7 +42,7 @@ const Header = () => {
             </header>
 
         </>
-    )
+    );
 };
 
 export default Header;
