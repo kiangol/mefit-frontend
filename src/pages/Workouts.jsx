@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
 import WorkoutList from "../components/Workout/WorkoutList";
+import Modal from "../hoc/Modal";
 
 const Workouts = () => {
 
@@ -40,6 +41,8 @@ const Workouts = () => {
         fetchData();
     }, []);
 
+
+
     const handleMuscleGroupSelect = event => {
         setCurrentWorkouts(workoutTypeMap.get(event.target.value))
     }
@@ -62,6 +65,7 @@ const Workouts = () => {
                         <WorkoutList list={currentWorkouts}/>
                     )}
                 </section>
+
                 <section>
 
                 </section>
