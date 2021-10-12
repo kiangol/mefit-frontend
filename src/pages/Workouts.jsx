@@ -44,18 +44,23 @@ const Workouts = () => {
         setCurrentWorkouts(workoutTypeMap.get(event.target.value))
     }
 
+    const handleNewWorkoutClick = () => {}
+
     return (
         <>
             <main>
-                <select onChange={handleMuscleGroupSelect}>
-                    <option key={"0"} value={"Show all"}>Show all</option>
-                    {workoutMap &&
-                    [...workoutMap].map((type) => (
-                            <option key={type} value={type}>{type}</option>
+                <section>
+                    <select onChange={handleMuscleGroupSelect}>
+                        <option key={"0"} value={"Show all"}>Show all</option>
+                        {workoutMap &&
+                        [...workoutMap].map((type) => (
+                                <option key={type} value={type}>{type}</option>
+                            )
                         )
-                    )
-                    }
-                </select>
+                        }
+                    </select>
+                    <button type={"button"} onClick={handleNewWorkoutClick} >Create new Workout</button>
+                </section>
                 <section>
                     <h1>Workouts</h1>
                     {currentWorkouts && (
