@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Navigation.module.css';
 import {NavLink} from 'react-router-dom';
 import KeycloakService from "../../services/KeycloakService";
+import logo from '../../images/logo_notext.png'
 
 const Navigation = () => {
 
@@ -11,6 +12,7 @@ const Navigation = () => {
     return (
         <>
             <nav className={styles.navParent}>
+                <img className={styles.navIcon} src={logo} alt="mefit logo"/>
                 {!loggedIn &&
                 <>
                     <NavLink exact to={"/"} activeClassName={"active"} className={styles.navItem}>

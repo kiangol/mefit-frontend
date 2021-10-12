@@ -1,8 +1,14 @@
+:root {
+  --bg-color: #EAF0CE;
+  --nav-bg: #f4e9cd;
+}
+
 body {
-  margin: 0;
+  margin-top: 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Helvetica', sans-serif;
+  background-color: var(--bg-color);
 }
 
 code {
