@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from "react-router-dom";
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
 import WorkoutList from "../components/Workout/WorkoutList";
@@ -12,6 +13,7 @@ const Workouts = () => {
     const [error, setError] = useState()
     const workoutTypes = new Set();
     const workoutGroupedByType = new Map();
+    const history = useHistory();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,9 +46,10 @@ const Workouts = () => {
         setCurrentWorkouts(workoutTypeMap.get(event.target.value))
     }
 
-    const handleNewWorkoutClick = () => {}
-
-    return (
+    const handleNewWorkoutClick = () => {
+        history.push("/workouts/create")
+    }
+        return (
         <>
             <main>
                 <section>
