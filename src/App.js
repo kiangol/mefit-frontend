@@ -1,7 +1,5 @@
 import './App.css'
 import Routes from './routes/Routes.jsx';
-import Modal from "./hoc/Modal";
-import {useState} from "react";
 
 
 

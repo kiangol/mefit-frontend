@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
 import WorkoutList from "../components/Workout/WorkoutList";
-import Modal from "../hoc/Modal";
+
 
 const Workouts = () => {
 

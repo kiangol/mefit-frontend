@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Login from '../pages/Login.jsx';
@@ -13,7 +13,6 @@ import Programs from "../pages/Programs";
 import Workouts from "../pages/Workouts";
 import Profile from "../pages/Profile";
 import Contributors from "../pages/Contributors";
-import Modal from "../hoc/Modal";
 
 // Might redirect "/" to "/login" and have "/" as dashboard.
 const Routes = () => {
