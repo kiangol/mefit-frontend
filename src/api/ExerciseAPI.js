@@ -10,6 +10,15 @@ export const list = async () => {
     }
 }
 
+export const listOne = async (id) => {
+    try {
+        return await http.get(`${API_URL}/${id}`);
+    } catch (error) {
+        return error;
+    }
+}
+
 export default {
-    list
+    list,
+    listOne
 };

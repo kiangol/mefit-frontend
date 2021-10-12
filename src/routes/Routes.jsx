@@ -15,26 +15,32 @@ import Profile from "../pages/Profile";
 import Contributors from "../pages/Contributors";
 
 // Might redirect "/" to "/login" and have "/" as dashboard.
-const Routes = () => (
-    <Router>
-        {/*AuthProvider og AppContainer her?*/}
+const Routes = () => {
 
-        <Header/>
-        <AppContainer>
-            <Switch>
-                <Route exact path={"/"} component={Login}/>
-                <Route exact path={"/register"} component={Register}/>
-                <Route exact path={"/exercises"} component={Exercises} />
-                <Route exact path={"/dashboard"} component={Dashboard} />
-                <Route exact path={"/goals"} component={Goals} />
-                <Route exact path={"/programs"} component={Programs} />
-                <Route exact path={"/workouts"} component={Workouts} />
-                <Route exact path={"/profile"} component={Profile} />
-                <Route exact path={"/contributor"} component={Contributors} />
-                <Route path={"*"} component={NotFound} />
-            </Switch>
-        </AppContainer>
-    </Router>
-)
+
+
+    return (
+        <Router>
+            {/*AuthProvider og AppContainer her?*/}
+
+            <Header/>
+            <AppContainer>
+                <Switch>
+                    <Route exact path={"/"} component={Login}/>
+                    <Route exact path={"/register"} component={Register}/>
+                    <Route exact path={"/exercises"} component={Exercises}/>
+                    <Route exact path={"/dashboard"} component={Dashboard}/>
+                    <Route exact path={"/goals"} component={Goals}/>
+                    <Route exact path={"/programs"} component={Programs}/>
+                    <Route exact path={"/workouts"} component={Workouts}/>
+                    <Route exact path={"/profile"} component={Profile}/>
+                    <Route exact path={"/contributor"} component={Contributors}/>
+                    <Route path={"*"} component={NotFound}/>
+                </Switch>
+            </AppContainer>
+
+        </Router>
+    )
+}
 
 export default Routes;
