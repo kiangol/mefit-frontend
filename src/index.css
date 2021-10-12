@@ -1,6 +1,8 @@
 :root {
-  --bg-color: #EAF0CE;
+  --bg-color: #14213D;
   --nav-bg: #f4e9cd;
+  --nav-txt: #fca311;
+  --grey-txt: #e5e5e5;
 }
 
 body {

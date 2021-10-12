@@ -5,7 +5,8 @@
     border-radius: 0.5rem;
     margin: 0.5rem;
     display: inline-grid;
-    background-color: whitesmoke;;
+    background-color: #454865FF;
+    color: var(--grey-txt);
 }
 
 .exerciseCard__grid {
@@ -32,7 +33,7 @@
 
 .exerciseCard:hover {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    background: rgb(250, 250, 250);
+    background: #5c5e80;
     transform: scale(1.02);
     /*background: linear-gradient(0deg, rgb(223, 252, 253) 0%, rgb(255, 247, 229) 100%);*/
 }
@@ -43,4 +44,11 @@
 .exerciseList {
     list-style-type: none;
     padding: 0;
+}
+
+select {
+    background-color: var(--nav-txt);
+    color: var(--bg-color);
+    border-radius: 0.5rem;
+    border-style: none;
 }
