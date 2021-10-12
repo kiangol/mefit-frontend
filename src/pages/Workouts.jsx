@@ -15,6 +15,7 @@ const Workouts = () => {
     const workoutGroupedByType = new Map();
     const history = useHistory();
 
+    
     useEffect(() => {
         const fetchData = async () => {
             const {data, error} = await list();
@@ -47,7 +48,9 @@ const Workouts = () => {
     }
 
     const handleNewWorkoutClick = () => {
-        history.push("/workouts/create")
+       // history.push("/workouts/create")
+        // create(goal)
+        // fetchdata();
     }
         return (
         <>
