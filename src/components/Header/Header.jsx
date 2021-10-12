@@ -29,7 +29,6 @@ const Header = () => {
         <>
             <header className={styles.Header}>
                 <Navigation/>
-
                 {loggedIn &&
                 <div className={styles.userAndLogoutDiv}>
                     <div className={styles.userAndLogoutDiv_User}>

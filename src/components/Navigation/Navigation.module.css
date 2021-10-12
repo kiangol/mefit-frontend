@@ -4,17 +4,25 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #2f2f2e;
+    /*background-color: #2f2f2e;*/
+    /*box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;*/
+    /*background-color: var(--nav-bg);*/
+}
+
+.navIcon {
+    margin:1.5rem;
+    height: 50px;
+    width: 50px;
 }
 
 .navItem {
-    color: whitesmoke;
+    color: #284b63;
     padding: 0.4rem;
     text-decoration: none;
 }
 
 .navItem:hover {
     cursor: pointer;
-    color: whitesmoke;
+    color: #1b3646;
     transform: scale(1.04);
 }
