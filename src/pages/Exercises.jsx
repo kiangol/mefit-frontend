@@ -1,11 +1,19 @@
 import React, {useEffect, useState} from 'react';
 
 import {list} from "../api/ExerciseAPI";
-import ExerciseItem from "../components/Exercise/ExerciseItem";
+import ExerciseList from "../components/Exercise/ExerciseList";
 import withKeycloak from "../hoc/withKeycloak";
+import styled from 'styled-components';
+import {Modal} from '../components/Modal/Modal';
 
 
 const Exercises = () => {
+    const Container = styled.div`
+      display: flex;
+      justify-content: center;
+      //align-items: center;
+      //height: 100vh;
+    `;
 
     const [exercises, setExercises] = useState();
     const [currentExercises, setCurrentExercises] = useState();
@@ -14,6 +22,10 @@ const Exercises = () => {
     const [error, setError] = useState();
     let musclegroups = new Set();
     const muscleGroupMap = new Map();
+
+    const [showModal, setShowModal] = useState(false);
+    const [clickedExercise, setClickedExercise] = useState();
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,16 +38,16 @@ const Exercises = () => {
                 setExercises(data);
                 setCurrentExercises(data);
                 for (let exercise of data) {
-                    musclegroups.add(exercise.targetMuscleGroup)
-                    if (muscleGroupMap.has(exercise.targetMuscleGroup)){
+                    musclegroups.add(exercise.targetMuscleGroup);
+                    if (muscleGroupMap.has(exercise.targetMuscleGroup)) {
                         muscleGroupMap.get(exercise.targetMuscleGroup).push(exercise);
                     } else {
-                        muscleGroupMap.set(exercise.targetMuscleGroup, [exercise])
+                        muscleGroupMap.set(exercise.targetMuscleGroup, [exercise]);
                     }
                 }
-                muscleGroupMap.set("Show all", data)
+                muscleGroupMap.set("Show all", data);
 
-                setMuscleGroupMap1(muscleGroupMap)
+                setMuscleGroupMap1(muscleGroupMap);
                 setMuscleGroup(musclegroups);
             }
         };
@@ -44,12 +56,16 @@ const Exercises = () => {
 
 
     const handleMuscleGroupSelect = event => {
-        console.log(muscleGroupMap1.get("Show all"))
-       setCurrentExercises(muscleGroupMap1.get(event.target.value))
-    }
+        console.log(muscleGroupMap1.get("Show all"));
+        setCurrentExercises(muscleGroupMap1.get(event.target.value));
+    };
 
-
-
+    const openModal = exercise => {
+        console.log("CLICKED");
+        setClickedExercise(exercise);
+        console.log("SELECTED EXERCISE: " + exercise);
+        setShowModal(prev => !prev);
+    };
 
 // Legge muscle groups inn i et Set.
     return (
@@ -64,19 +80,19 @@ const Exercises = () => {
                     )
                     }
                 </select>
-                <section>
-                    <h1>API:</h1>
+                <Container>
                     {currentExercises && (
-                        <ExerciseItem list={currentExercises}/>
+                        <ExerciseList list={currentExercises} clicker={openModal}/>
                     )}
-                </section>
-                <section>
+                    <Modal showModal={showModal} setShowModal={setShowModal} exercise={clickedExercise}/>
+                </Container>
+                {/*<GlobalStyle/>*/}
 
-                </section>
             </main>
 
         </>
     );
+
 };
 
 export default withKeycloak(Exercises);

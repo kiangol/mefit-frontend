@@ -1,15 +1,19 @@
 import React from 'react';
+import styles from './ExerciseItem.module.css';
 
-const ExerciseItem = ({ list }) => (
-    <ul>
-        {list.map((exercise) => (
-            <li key={exercise.id}>
-                <p><b>Name:</b> {exercise.name}</p>
-                <p><b>Target Muscle Group:</b> {exercise.targetMuscleGroup}</p>
-                <p><b>Image Link:</b> {exercise.image}</p>
-            </li>
-        ))}
-    </ul>
-)
+
+const ExerciseItem = ({exercise, itemClick}) => {
+
+    return (
+        <li className={styles.exerciseCard} onClick={() => itemClick(exercise)} value={exercise.id}>
+            <div className={styles.exerciseCard__body}>
+                <h1>{exercise.name}</h1>
+                <div className={styles.exerciseCard__grid}>
+                    <img className={styles.exerciseCard__image} src={exercise.image} alt={exercise.name}/>
+                    <p><b>Target Muscle Group:</b> {exercise.targetMuscleGroup}</p></div>
+            </div>
+        </li>
+    )
+};
 
 export default ExerciseItem;
