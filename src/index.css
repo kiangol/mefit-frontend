@@ -24,7 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Helvetica', sans-serif;
   background-color: var(--bg-color);
-  color: white;
 }
 
 code {
