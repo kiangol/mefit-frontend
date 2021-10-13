@@ -10,6 +10,15 @@ export const list = async () => {
     }
 }
 
+export const create = async (data) => {
+    try {
+        return await http.post(`${API_URL}/`, data);
+    } catch (error) {
+        return error;
+    }
+}
+
 export default {
-    list
+    list,
+    create
 };
