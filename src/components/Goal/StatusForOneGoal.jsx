@@ -5,7 +5,9 @@ const StatusForOneGoal = ({goal}) => {
 
     const [completedWorkouts, setCompletedWorkouts] = useState([]);
     const [pendingWorkouts, setPendingWorkouts] = useState([]);
-    const [allWorkouts, setAllWorkouts] = useState();
+    const [allWorkouts, setAllWorkouts] = useState([]);
+
+    const date = new Date(goal.endDate).getDate() + "/" + new Date(goal.endDate).getMonth() + "/" + new Date(goal.endDate).getFullYear()
 
 
     useEffect(() => {
@@ -17,7 +19,6 @@ const StatusForOneGoal = ({goal}) => {
             let allWorkoutsList = [];
 
             for (let i = 0; i < goal.workouts.length; i++) {
-                console.log("HEI" + JSON.stringify(goal.workouts[i]))
                 if (goal.workouts[i].complete) {
                     completedCounter++;
                     completedWorkoutsList.push([
@@ -35,7 +36,7 @@ const StatusForOneGoal = ({goal}) => {
             }
             setCompletedWorkouts(completedWorkoutsList)
             setPendingWorkouts(pendingWorkoutsList)
-            console.log("Complete workouts" + JSON.stringify(completedWorkoutsList))
+            setAllWorkouts(goal.workouts)
         };
 
         calculateStatus();
@@ -43,13 +44,34 @@ const StatusForOneGoal = ({goal}) => {
 
     return (
         <>
-            <h1>WorkoutsForOneGoal - goal id : {goal.id}, ending on {goal.endDate}</h1>
+            <h2>Current goal end date: {date}</h2>
+            <h2>{completedWorkouts.length} out of {allWorkouts.length} workouts done for this goal.</h2>
             <h2>Completed workouts: {completedWorkouts.length}</h2>
+            {completedWorkouts &&
+            [...completedWorkouts].map((workout) => (
+                    <>
+                        <h4>{workout[0].name}</h4>
+                    </>
+                )
+            )}
             <h2>Pending workouts: {pendingWorkouts.length}</h2>
-            {goal &&
-           goal.workouts.map((goal) => (
-                <h1>{goal.name}</h1>
-            ))}
+            {pendingWorkouts &&
+            [...pendingWorkouts].map((workout) => (
+                    <>
+                        <h4>{workout[0].name}</h4>
+                    </>
+                )
+            )}
+
+            <h2>All workouts</h2>
+            {allWorkouts &&
+            [...allWorkouts].map((workout) => (
+                    <>
+                        <h2>{workout.name}</h2>
+                    </>
+                )
+            )}
+
         </>
     )
 }
