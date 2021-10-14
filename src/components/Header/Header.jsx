@@ -17,8 +17,6 @@ const Header = () => {
 		}
 	};
 
-
-
      const history = useHistory();
 
      const goToProfile = () => {
