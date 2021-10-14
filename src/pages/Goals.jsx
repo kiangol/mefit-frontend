@@ -4,12 +4,13 @@ import {list, listOne} from "../api/GoalAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import PreviousGoals from "../components/Goal/PreviousGoals";
+import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
 
 
 const Goals = () => {
     const [test, setTest] = useState({
         "id": 2,
-        "endDate": "2021-10-13T10:08:40+0000",
+        "endDate": "2021-11-13T10:08:40+0000",
         "achieved": true,
         "program": {
             "id": 2
@@ -37,13 +38,12 @@ const Goals = () => {
     })
     const [achievedGoals, setAchievedGoals] = useState([]);
     const [currentGoal, setCurrentGoal] = useState();
+    const [goalInThisWeek, setGoalInThisWeek] = useState()
     const [error, setError] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
-            const achievedGoals = {
-                id: KeycloakService.getUsername()
-            };
+            const achievedGoals = [];
             const {data, error} = await listOne(6);
             if (error) {
                 console.log(error);
@@ -61,12 +61,23 @@ const Goals = () => {
                     }
                 }
                 setAchievedGoals(achievedGoals)
-                console.log(data)
+                setGoalInThisWeek(isGoalThisWeek(test.endDate))
             }
         };
         //fetchData();
-        console.log(test)
+
     }, [])
+
+    const isGoalThisWeek = (date) => {
+        const dateOfGoal = new Date(date).getDate();
+        const dateObj = new Date();
+        const todayDate = dateObj.getDate();
+        const todayDay = dateObj.getDay();
+        const firstDayOfTheWeek = new Date(dateObj.setDate(todayDate-todayDay))
+        const lastDayOfTheWeek = new Date(firstDayOfTheWeek)
+        lastDayOfTheWeek.setDate(lastDayOfTheWeek.getDate() + 6)
+        return dateOfGoal >= firstDayOfTheWeek && dateOfGoal <= lastDayOfTheWeek;
+    }
 
     return (
         <>
@@ -75,6 +86,9 @@ const Goals = () => {
             }
             {achievedGoals &&
             <PreviousGoals goals={achievedGoals}/>
+            }
+            {!goalInThisWeek &&
+            <NoGoalForWeek />
             }
         </>
     )
