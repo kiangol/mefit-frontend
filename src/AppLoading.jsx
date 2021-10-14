@@ -1,6 +1,5 @@
 import './AppLoading.css'
 
-
 const AppLoading = () => {
     return (
         <div className="AppLoading">
@@ -10,9 +9,8 @@ const AppLoading = () => {
                 <div></div>
                 <div></div>
             </div>
-            <p>Application initialising...</p>
+            <p>Loading...</p>
         </div>
-
     )
 };
 export default AppLoading;

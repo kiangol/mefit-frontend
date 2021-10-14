@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 .Header {
     background: var(--nav-bg);
     display: flex;
     flex-direction: row;
     font-size: larger;
+    font-family: 'Lato', sans-serif;
     color: var(--nav-txt);
     width: 100%;
     position: fixed;

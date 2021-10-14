@@ -6,11 +6,10 @@ import { MdClose } from 'react-icons/md';
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  transition: 0.3s;
+  //transition: 0.3s;
   position: fixed;
-  //backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px) brightness(80%);
   display: flex;
-
   justify-content: center;
   align-items: center;
 `;
@@ -34,8 +33,10 @@ const ModalWrapper = styled.div`
 const ModalImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  padding: 10px;
   border-radius: 10px 0 0 10px;
-  background: #000;
+  background: #ffffff;
 `;
 
 const ModalContent = styled.div`
@@ -90,9 +91,6 @@ export const Modal = ({ showModal, setShowModal, exercise }) => {
                 setShowModal(false);
                 console.log('I pressed');
             }
-            if (e.key === 'A' && !showModal) {
-                setShowModal(true);
-            }
         },
         [setShowModal, showModal]
     );
@@ -114,8 +112,8 @@ export const Modal = ({ showModal, setShowModal, exercise }) => {
                             <ModalImg src={exercise.image} alt='camera' />
                             <ModalContent>
                                 <h1>{exercise.name}</h1>
-                                <p>Get exclusive access to our next launch.</p>
-                                <button>Join Now</button>
+                                <p>{exercise.description}</p>
+                                <button>Add to program</button>
                             </ModalContent>
                             <CloseModalButton
                                 aria-label='Close modal'
