@@ -1,24 +1,32 @@
 import React from 'react';
 import styles from './Navigation.module.css';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import KeycloakService from "../../services/KeycloakService";
+import logo from '../../images/logo_notext.png'
 
 const Navigation = () => {
-
+    const history = useHistory();
     const loggedIn = KeycloakService.isLoggedIn()
+
+    const onLogoClick = () => {
+        history.push("/")
+    }
 
 
     return (
         <>
             <nav className={styles.navParent}>
+                <img className={styles.navIcon} src={logo} alt="mefit logo" onClick={onLogoClick}/>
                 {!loggedIn &&
                 <>
-                    <NavLink exact to={"/"} activeClassName={"active"} className={styles.navItem}>
-                        Login
-                    </NavLink>
-                    <NavLink exact to={"/register"} activeClassName={"active"} className={styles.navItem}>
-                        Register
-                    </NavLink>
+                    <div onClick={() => {KeycloakService.doLogin()}} className={styles.navItem}>
+                        <NavLink exact to={"/"} activeClassName={"active"} className={styles.navItem}>
+                            Login
+                        </NavLink>
+                    </div>
+                    {/*<NavLink exact to={"/register"} activeClassName={"active"} className={styles.navItem}>*/}
+                    {/*    Register*/}
+                    {/*</NavLink>*/}
                 </>
                 }
 
@@ -27,10 +35,10 @@ const Navigation = () => {
                     <NavLink exact to={"/dashboard"} activeClassName={"active"} className={styles.navItem}>
                         Dashboard
                     </NavLink>
-                    <NavLink exact to={"/Programs"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/programs"} activeClassName={"active"} className={styles.navItem}>
                         Programs
                     </NavLink>
-                    <NavLink exact to={"/Workouts"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/workouts"} activeClassName={"active"} className={styles.navItem}>
                         Workouts
                     </NavLink>
                     <NavLink exact to={"/exercises"} activeClassName={"active"} className={styles.navItem}>

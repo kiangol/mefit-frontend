@@ -1,7 +1,29 @@
+:root {
+  --bg-color: #F0F3FA;
+  --nav-bg: #f4e9cd;
+  --nav-txt: #f8ca5a;
+  --grey-txt: #3D3D3D;
+  --card-color: #D1DBF0;
+  --card-hover: #849ED7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #14213D;
+    --nav-bg: #f4e9cd;
+    --nav-txt: #fca311;
+    --grey-txt: #e5e5e5;
+    --card-color: #454865FF;
+    --card-hover: #5c5e80;
+  }
+}
+
 body {
-  margin: 0;
+  margin-top: 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Helvetica', sans-serif;
+  background-color: var(--bg-color);
 }
 
 code {

@@ -1,0 +1,54 @@
+.exerciseCard {
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: var(--card-color);
+    color: var(--grey-txt);
+}
+
+.exerciseCard__grid {
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    grid-row-gap: 30px;
+}
+
+.exerciseCard__body {
+    padding: 1rem;
+}
+
+.exerciseCard__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 2px 0 8px 2px rgba(0,0,0,0.1);
+}
+
+.exerciseCard__icon {
+    padding: 1vh;
+}
+
+.exerciseCard:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    background: var(--card-hover);
+    transform: scale(1.02);
+    /*background: linear-gradient(0deg, rgb(223, 252, 253) 0%, rgb(255, 247, 229) 100%);*/
+}
+
+.exerciseCard:active {
+}
+
+.exerciseList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+    padding: 0;
+}
+
+select {
+    background-color: var(--nav-txt);
+    color: var(--bg-color);
+    border-radius: 0.5rem;
+    border-style: none;
+}

@@ -9,25 +9,26 @@ import KeycloakService from "../../services/KeycloakService";
 const Header = () => {
 
     const loggedIn = KeycloakService.isLoggedIn();
-    const name = KeycloakService.getUsername();
+    const name = KeycloakService.getName();
+
 
     const handleLogoutClick = () => {
-		if (window.confirm('Are you sure?')) {
-			KeycloakService.doLogout()
-		}
-	};
+        if (window.confirm('Are you sure?')) {
+            KeycloakService.doLogout();
+        }
+    };
 
-     const history = useHistory();
 
-     const goToProfile = () => {
-        history.push("/profile") // history.push("/profiles" + id)
-    }
+    const history = useHistory();
+
+    const goToProfile = () => {
+        history.push("/profile"); // history.push("/profiles" + id)
+    };
 
     return (
         <>
             <header className={styles.Header}>
                 <Navigation/>
-
                 {loggedIn &&
                 <div className={styles.userAndLogoutDiv}>
                     <div className={styles.userAndLogoutDiv_User}>
@@ -41,7 +42,7 @@ const Header = () => {
             </header>
 
         </>
-    )
+    );
 };
 
 export default Header;

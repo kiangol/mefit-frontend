@@ -1,6 +1,6 @@
 import http from './http';
 
-const API_URL = '/exercises';
+const API_URL = '/workout';
 
 export const list = async () => {
     try {
@@ -10,9 +10,9 @@ export const list = async () => {
     }
 }
 
-export const listOne = async (id) => {
+export const create = async (data) => {
     try {
-        return await http.get(`${API_URL}/${id}`);
+        return await http.post(`${API_URL}/`, data);
     } catch (error) {
         return error;
     }
@@ -20,5 +20,5 @@ export const listOne = async (id) => {
 
 export default {
     list,
-    listOne
+    create
 };
