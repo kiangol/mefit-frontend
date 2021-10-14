@@ -45,7 +45,7 @@ const StatusForOneGoal = ({goal}) => {
     return (
         <>
             <h2>Current goal end date: {date}</h2>
-            <h2> out of {allWorkouts.length} workouts done for this goal.</h2>
+            <h2>{workouts.complete.length} out of {allWorkouts.length} workouts done for this goal.</h2>
             <h2>Pending workouts: </h2>
             {workouts.pending.map((workout) => (
                     <>
@@ -58,7 +58,7 @@ const StatusForOneGoal = ({goal}) => {
             <h2>Completed workouts: </h2>
             {workouts.complete.map((workout) => (
                     <>
-                        <h4>{workout.name}</h4>
+                        <h4 key={workout.id}>{workout.name}</h4>
                     </>
                 )
             )}

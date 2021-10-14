@@ -18,7 +18,16 @@ export const create = async (data) => {
     }
 }
 
+export const updateWorkout = async (data) => {
+    try {
+        return await http.patch(`${API_URL}/`, data);
+    } catch (error) {
+        return error;
+    }
+}
+
 export default {
     list,
-    create
+    create,
+    updateWorkout
 };

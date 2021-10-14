@@ -17,6 +17,8 @@ export const listOne = async (id) => {
         return error;
     }
 }
+
+
 export default {
     list,
     listOne

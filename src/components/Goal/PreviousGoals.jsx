@@ -8,6 +8,7 @@ const PreviousGoals = ({goals}) => {
 
     return (
        <>
+           <h1>Previous goals</h1>
            {goals && (
                [...goals].map((goal) => (
                    <>

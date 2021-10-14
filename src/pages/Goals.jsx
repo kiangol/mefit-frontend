@@ -41,7 +41,9 @@ const Goals = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const achievedGoals = [];
+            const achievedGoals = {
+                id: KeycloakService.getUsername()
+            };
             const {data, error} = await listOne(6);
             if (error) {
                 console.log(error);
