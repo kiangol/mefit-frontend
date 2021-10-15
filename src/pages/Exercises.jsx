@@ -86,7 +86,6 @@ const Exercises = () => {
                     )}
                     <Modal showModal={showModal} setShowModal={setShowModal} exercise={clickedExercise}/>
                 </Container>
-                {/*<GlobalStyle/>*/}
 
             </main>
 
