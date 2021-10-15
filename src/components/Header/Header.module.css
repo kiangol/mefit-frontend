@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 .Header {
     background: var(--nav-bg);
     display: flex;
     flex-direction: row;
-    font-size: larger;
+    font-size: 22px;
     font-family: 'Lato', sans-serif;
+    font-weight: bold;
     color: var(--nav-txt);
     width: 100%;
+    align-items: center;
     position: fixed;
     top: 0;
     z-index: 999;
@@ -21,6 +22,8 @@
 .userAndLogoutDiv {
     display: flex;
     flex-direction: row;
+    font-weight: normal;
+    margin: 1.5rem;
 }
 
 .userAndLogoutDiv_User:hover {

@@ -18,7 +18,16 @@ export const create = async (data) => {
     }
 }
 
+export const listOne = async (id) => {
+    try {
+        return await http.get(`${API_URL}/${id}`);
+    } catch (error) {
+        return error;
+    }
+}
+
 export default {
     list,
-    create
+    create,
+    listOne
 };
