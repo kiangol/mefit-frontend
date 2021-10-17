@@ -1,18 +1,13 @@
 import './AppLoading.css'
 
-
 const AppLoading = () => {
     return (
         <div className="AppLoading">
-            <div className="lds-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
+            <div className="lds-heart">
                 <div></div>
             </div>
-            <p>Application initialising...</p>
+            <p>Loading...</p>
         </div>
-
     )
 };
 export default AppLoading;

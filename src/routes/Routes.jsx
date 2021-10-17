@@ -11,7 +11,7 @@ import Dashboard from "../pages/Dashboard";
 import Goals from "../pages/Goals";
 import Programs from "../pages/Programs";
 import Workouts from "../pages/Workouts";
-import Profile from "../pages/Profile";
+import ProfilePage from "../pages/ProfilePage";
 import Contributors from "../pages/Contributors";
 import NewWorkout from "../pages/NewWorkout";
 
@@ -35,7 +35,7 @@ const Routes = () => {
                     <Route exact path={"/programs"} component={Programs}/>
                     <Route exact path={"/workouts"} component={Workouts}/>
                     <Route exact path={"/workouts/create"} component={NewWorkout}/>
-                    <Route exact path={"/profile"} component={Profile}/>
+                    <Route exact path={"/profile"} component={ProfilePage}/>
                     <Route exact path={"/contributor"} component={Contributors}/>
                     <Route path={"*"} component={NotFound}/>
                 </Switch>

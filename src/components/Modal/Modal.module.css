@@ -1,0 +1,7 @@
+.modalCard__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 2px 0 8px 2px rgba(0,0,0,0.1);
+}
