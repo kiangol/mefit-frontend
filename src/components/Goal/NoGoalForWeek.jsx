@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/ProgramAPI";
-import {create} from "../../api/GoalAPI";
+import {updateGoal} from "../../api/GoalAPI";
 import {useHistory} from "react-router-dom";
+import KeycloakService from "../../services/KeycloakService";
+import {listOne} from "../../api/ProfileAPI";
 
 const NoGoalForWeek = () => {
 
     const history = useHistory();
+    const [profile, setProfile] = useState();
     const [programs, setPrograms] = useState();
     const [workouts, setWorkouts] = useState();
     const [exercises, setExercises] = useState();
-
     const [goal, setGoal] = useState({
         "endDate": "",
         "achieved": false,
@@ -19,6 +21,14 @@ const NoGoalForWeek = () => {
     })
 
     useEffect(() => {
+        const fetchProfile = async () => {
+            const {data, error} = await listOne(KeycloakService.getUsername());
+            if (error) {
+                console.log(error)
+            } else {
+                setProfile(data);
+            }
+        }
         const fetchPrograms = async () => {
             const {data, error} = await list();
             if (error) {
@@ -33,8 +43,8 @@ const NoGoalForWeek = () => {
     const handleSetProgramAsGoalClick = async program => {
         const newGoal = {...goal}
         newGoal.program = program.id;
-        await create(newGoal);
-        goToGoalsPage();
+        await updateGoal(profile, newGoal);
+        //goToGoalsPage();
     }
 
     const goToGoalsPage = () => {
@@ -44,13 +54,13 @@ const NoGoalForWeek = () => {
     return (
         <>
             {programs &&
-                programs.map((program) => (
+            programs.map((program) => (
                 <div>
                     <h4>{program.name}</h4>
                     <p>Category: {program.category}</p>
                     <button type={"button"} onClick={() => handleSetProgramAsGoalClick(program)}>Set as goal</button>
                 </div>
-                ))
+            ))
 
             }
             <h1>Create Custom Program</h1>

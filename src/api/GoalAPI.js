@@ -19,16 +19,27 @@ export const listOne = async (id) => {
     }
 }
 
-export const create = async (goal) => {
+export const updateGoal = async (profile, goal) => {
     try {
-        return await http.post(`${API_URL_PROFILE}/`, goal)
+
+        return await http.patch(`${API_URL_PROFILE}/`, {
+            data: JSON.stringify( {
+                "username": profile,
+                "goal": goal,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
     } catch (error) {
-        return error
+        return error;
     }
 }
+
 
 export default {
     list,
     listOne,
-    create,
+    updateGoal,
 };

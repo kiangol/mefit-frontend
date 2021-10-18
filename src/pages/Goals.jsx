@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
-import {list, listOne} from "../api/GoalAPI";
+import {list, listOne} from "../api/ProfileAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import PreviousGoals from "../components/Goal/PreviousGoals";
@@ -38,11 +38,26 @@ const Goals = () => {
     })
     const [achievedGoals, setAchievedGoals] = useState([]);
     const [currentGoal, setCurrentGoal] = useState();
-    const [goalInThisWeek, setGoalInThisWeek] = useState()
+    const [goalInThisWeek, setGoalInThisWeek] = useState();
+    const [username] = useState({
+        username: "kian@test.no"
+    });
+
     const [error, setError] = useState();
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchProfile = async () => {
+            const {data, error} = await listOne(JSON.stringify(username.username));
+            if (error) {
+                console.log(error)
+            } else {
+                console.log(username)
+                console.log("STRINGIFY" + JSON.stringify(data))
+                console.log(data)
+                setCurrentGoal(data)
+            }
+        }
+       /* const fetchData = async () => {
             const achievedGoals = [];
             const {data, error} = await listOne(6);
             if (error) {
@@ -64,11 +79,13 @@ const Goals = () => {
 
             }
         };
+        */
         const setDate = () => {
             setGoalInThisWeek(isGoalThisWeek(test.endDate));
         }
         //fetchData();
-        setDate()
+        fetchProfile();
+        //setDate()
     }, [])
 
     const isGoalThisWeek = (date) => {
@@ -107,7 +124,7 @@ const Goals = () => {
             {goalInThisWeek &&
             <NoGoalForWeek/>
             }
-            {(test && !goalInThisWeek) &&
+            {(!test && !goalInThisWeek) &&
             <StatusForOneGoal goal={test}/>
             }
             {achievedGoals &&
