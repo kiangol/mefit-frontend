@@ -14,22 +14,16 @@ export const create = async (data) => {
     try {
         return await http.post(`${API_URL}/add/`, data);
     } catch (error) {
+        console.error(error);
         return error;
     }
 }
 
 export const listOne = async (id) => {
     try {
-        console.log("GET profile: " + id);
-        return await http.post(`${API_URL}/`, {
-            data: JSON.stringify( {
-                "username": id
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
+        return await http.post(`${API_URL}`, {
+            'username': id
+        })
     } catch (error) {
         return error;
     }
