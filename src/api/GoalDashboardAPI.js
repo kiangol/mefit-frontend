@@ -2,14 +2,14 @@ import http from './http';
 
 const API_URL = '/goal';
 
-export const create = async (date) => {
+export const goal = async (data) => {
     try {
-        return await http.post(`${API_URL}/`, date);
+        return await http.get(`${API_URL}/`, data);
     } catch (error) {
         return error;
     }
 }
 
 export default {
-    create,
+    goal,
 };

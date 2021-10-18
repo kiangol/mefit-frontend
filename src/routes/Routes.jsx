@@ -8,7 +8,6 @@ import Header from '../components/Header/Header';
 import Register from "../pages/Register";
 import Exercises from "../pages/Exercises";
 import Dashboard from "../pages/Dashboard";
-import Goals from "../pages/Goals";
 import Programs from "../pages/Programs";
 import Workouts from "../pages/Workouts";
 import Profile from "../pages/Profile";
