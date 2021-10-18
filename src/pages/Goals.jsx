@@ -47,14 +47,12 @@ const Goals = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const {data, error} = await listOne(JSON.stringify(username.username));
+            const {data, error} = await listOne(username.username);
             if (error) {
                 console.log(error)
             } else {
-                console.log(username)
-                console.log("STRINGIFY" + JSON.stringify(data))
-                console.log(data)
-                setCurrentGoal(data)
+                console.log(data.goal)
+                setCurrentGoal(data.goal)
             }
         }
        /* const fetchData = async () => {
@@ -121,11 +119,11 @@ const Goals = () => {
 
     return (
         <>
-            {goalInThisWeek &&
+            {!goalInThisWeek &&
             <NoGoalForWeek/>
             }
             {(!test && !goalInThisWeek) &&
-            <StatusForOneGoal goal={test}/>
+            <StatusForOneGoal goal={currentGoal}/>
             }
             {achievedGoals &&
             <PreviousGoals goals={achievedGoals}/>

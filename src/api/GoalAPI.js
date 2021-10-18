@@ -19,19 +19,11 @@ export const listOne = async (id) => {
     }
 }
 
-export const updateGoal = async (profile, goal) => {
+export const updateGoal = async (profileId, goal) => {
     try {
-
-        return await http.patch(`${API_URL_PROFILE}/`, {
-            data: JSON.stringify( {
-                "username": profile,
-                "goal": goal,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
+        return await http.patch(`${API_URL_PROFILE}/${profileId}`, {
+            'goal': goal,
+        })
     } catch (error) {
         return error;
     }

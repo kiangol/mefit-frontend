@@ -19,31 +19,37 @@ const NoGoalForWeek = () => {
         "program": "",
         "workouts": []
     })
+    const [username] = useState({
+        username: KeycloakService.getUsername()
+    })
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const {data, error} = await listOne(KeycloakService.getUsername());
+            const {data, error} = await listOne(username.username);
             if (error) {
-                console.log(error)
+                console.log("error " + error)
             } else {
+                console.log("profile " + JSON.stringify(data))
                 setProfile(data);
             }
         }
         const fetchPrograms = async () => {
             const {data, error} = await list();
             if (error) {
-                console.log(error)
+                console.log("programerror " + error)
             } else {
                 setPrograms(data);
             }
         };
-        fetchPrograms()
+        fetchPrograms();
+        fetchProfile();
     }, [])
 
     const handleSetProgramAsGoalClick = async program => {
         const newGoal = {...goal}
-        newGoal.program = program.id;
-        await updateGoal(profile, newGoal);
+        newGoal.program = program
+        await updateGoal(profile.id, newGoal);
+        console.log("STRINGYFYYYY "+JSON.stringify(program));
         //goToGoalsPage();
     }
 
