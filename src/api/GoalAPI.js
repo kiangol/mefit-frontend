@@ -1,6 +1,7 @@
 import http from './http';
 
 const API_URL = '/goal';
+const API_URL_PROFILE = '/profile'
 
 export const list = async () => {
     try {
@@ -18,8 +19,16 @@ export const listOne = async (id) => {
     }
 }
 
+export const create = async (goal) => {
+    try {
+        return await http.post(`${API_URL_PROFILE}/`, goal)
+    } catch (error) {
+        return error
+    }
+}
 
 export default {
     list,
-    listOne
+    listOne,
+    create,
 };
