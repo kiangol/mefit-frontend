@@ -8,6 +8,7 @@ import KeycloakService from "../services/KeycloakService";
 
 var counter= 1;
 const loggedIn = KeycloakService.isLoggedIn()
+let hasGoal = false
 
 const GoalsDashBoard = () => {
     // set states of calendar date
@@ -26,15 +27,21 @@ const GoalsDashBoard = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data, error} = await listOne(username);
+            const {data, error} = await listOne(username.username);
             if (error) {
                 console.log(error);
                 setError(error);
                 console.log(error);
             } else {
                 setUserId(data);
-                setUserGoal(data.goal)
-/*
+                try {
+                    setUserGoal(data.goal)
+                    hasGoal = true
+                } catch (error) {
+                    console.log(error)
+                    setError(error)
+                }
+/*              for listing goals
                 for (let goal of data) {
                     workoutTypes.add(workout.type)
                     if (workoutGroupedByType.has(workout.type)){
@@ -114,8 +121,12 @@ const GoalsDashBoard = () => {
                         <button onClick={addelement} value={goalDate}>Set Goal</button>
                         <br/><br/>
                         <ul id="goalList">
+                            {hasGoal && <>
                             <h2>Your goals</h2>
-                            <p>You have no Goals</p>
+                            <p>{userGoal}</p>
+                            </>
+                            }
+                            {!hasGoal && <> <p>You have no Goals</p></>}
                         </ul>
                     </div>
             </article>
