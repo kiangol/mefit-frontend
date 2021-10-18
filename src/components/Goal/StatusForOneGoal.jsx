@@ -30,7 +30,7 @@ const StatusForOneGoal = ({goal}) => {
         ]
     }
 
-    const handleCompletedWorkoutClick = workout => {
+    const handleCompletedWorkoutClick = async workout => {
         const localWorkouts = {...workouts}
         for (let i = 0; i < localWorkouts.pending.length; i++) {
             if (localWorkouts.pending[i].id === workout.id) {
@@ -41,6 +41,7 @@ const StatusForOneGoal = ({goal}) => {
         const [ complete, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.complete])
         setWorkouts({ complete, pending })
         //Call API and update.
+
     }
     console.log(workouts);
     return (
