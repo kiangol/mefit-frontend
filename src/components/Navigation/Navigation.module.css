@@ -1,17 +1,15 @@
 .navParent {
-    width: 100%;
+    transition: 0.3s;
+    width: 80%;
     height: 3.5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: var(--nav-txt);
-    /*background-color: #2f2f2e;*/
-    /*box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;*/
-    /*background-color: var(--nav-bg);*/
 }
 
 .navIcon {
-    margin:1.5rem;
+    margin-right:5%;
+    margin-left: 2%;
     height: 50px;
     width: 50px;
 }
