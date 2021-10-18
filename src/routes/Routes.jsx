@@ -30,7 +30,6 @@ const Routes = () => {
                     <Route exact path={"/register"} component={Register}/>
                     <Route exact path={"/exercises"} component={Exercises}/>
                     <Route exact path={"/dashboard"} component={Dashboard}/>
-                    <Route exact path={"/goals"} component={Goals}/>
                     <Route exact path={"/programs"} component={Programs}/>
                     <Route exact path={"/workouts"} component={Workouts}/>
                     <Route exact path={"/workouts/create"} component={NewWorkout}/>

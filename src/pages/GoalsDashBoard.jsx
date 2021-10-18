@@ -2,33 +2,40 @@ import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import { goal } from "../api/GoalDashboardAPI";
+import { listOne } from "../api/ProfileAPI";
+import KeycloakService from "../services/KeycloakService";
 
 
 var counter= 1;
-//const loggedIn = KeycloakService.getName()
+const loggedIn = KeycloakService.isLoggedIn()
 
 const GoalsDashBoard = () => {
     // set states of calendar date
-    let todayDate = new Date()
-    const [goalOne, setGoalOne] = useState()
-    const [error, setError] = useState()
+    const [goalDate, setGoalDate] = useState(new Date())
     const [calDate, setCalDate] = useState(new Date())
+    const [userGoal, setUserGoal] = useState()
+
+    const [error, setError] = useState()
+    const [userId, setUserId] = useState()
     const [dateString, setDateString] = useState({
         endDate: new Date().toString()
     })
+    const [username] = useState({
+        username: KeycloakService.getUsername()
+    });
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data, error} = await goal(1);
+            const {data, error} = await listOne(username);
             if (error) {
                 console.log(error);
                 setError(error);
                 console.log(error);
             } else {
-                setGoalOne(data);
-                /*
-                for (let workout of data) {
+                setUserId(data);
+                setUserGoal(data.goal)
+/*
+                for (let goal of data) {
                     workoutTypes.add(workout.type)
                     if (workoutGroupedByType.has(workout.type)){
                         workoutGroupedByType.get(workout.type).push(workout);
@@ -54,8 +61,26 @@ const GoalsDashBoard = () => {
 
     function addelement() {
         var completelist= document.getElementById("goalList");
-        completelist.innerHTML += "<li>Goal " + counter + ": deadline: " + dateString + "</li>";
+        completelist.innerHTML += "<li>Goal " + counter + ": deadline: " + goalDate.getDate() + " " + getMonth(goalDate.getMonth()) +"</li>";
         counter++;
+    }
+
+    function getMonth(monthInt){
+         switch (monthInt){
+             case 0: return "Jan"
+             case 1: return "Feb"
+             case 2: return "Mar"
+             case 3: return "Apr"
+             case 4: return "May"
+             case 5: return "Jun"
+             case 6: return "Jul"
+             case 7: return "Aug"
+             case 8: return "Sep"
+             case 9: return "Oct"
+             case 10:return "Nov"
+             case 11:return "Dec"
+             default: return "Unknown Month int"
+         }
     }
 
 
@@ -65,9 +90,9 @@ const GoalsDashBoard = () => {
 
         const newResultFormat = new Date().toLocaleString().split(",")[0]
         const newCalDateFormat = clickedDate.toLocaleString().split(",")[0]
-        setDateString(newCalDateFormat.toString())
-        //console.log(dateString+"conloe log")
-        console.log(new Date(clickedDate).getDate())
+        setGoalDate(new Date(clickedDate))
+
+        console.log(new Date(clickedDate).getDay())
         return newResultFormat === newCalDateFormat
     }
 
@@ -86,7 +111,7 @@ const GoalsDashBoard = () => {
             <article className="col">
                     <div className="card-body">
                         <h2>Goals</h2>
-                        <button onClick={addelement}>Set Goal</button>
+                        <button onClick={addelement} value={goalDate}>Set Goal</button>
                         <br/><br/>
                         <ul id="goalList">
                             <h2>Your goals</h2>
