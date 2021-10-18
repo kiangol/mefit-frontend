@@ -17,7 +17,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data, error} = await listOne(44);
+            const {data, error} = await listOne(username.username);
             if (error) {
                 console.error(error);
             } else {

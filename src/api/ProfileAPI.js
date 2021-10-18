@@ -12,15 +12,18 @@ export const list = async () => {
 
 export const create = async (data) => {
     try {
-        return await http.post(`${API_URL}/`, data);
+        return await http.post(`${API_URL}/add/`, data);
     } catch (error) {
+        console.error(error);
         return error;
     }
 }
 
 export const listOne = async (id) => {
     try {
-        return await http.get(`${API_URL}/${id}`);
+        return await http.post(`${API_URL}`, {
+            'username': id
+        })
     } catch (error) {
         return error;
     }
