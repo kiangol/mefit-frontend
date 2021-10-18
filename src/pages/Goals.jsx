@@ -10,7 +10,7 @@ import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
 const Goals = () => {
     const [test, setTest] = useState({
         "id": 2,
-        "endDate": "2021-11-13T10:08:40+0000",
+        "endDate": "2021-10-11T10:08:40+0000",
         "achieved": true,
         "program": {
             "id": 2
@@ -61,14 +61,34 @@ const Goals = () => {
                     }
                 }
                 setAchievedGoals(achievedGoals)
-                setGoalInThisWeek(isGoalThisWeek(test.endDate))
+
             }
         };
+        const setDate = () => {
+            setGoalInThisWeek(isGoalThisWeek(test.endDate));
+        }
         //fetchData();
-
+        setDate()
     }, [])
 
     const isGoalThisWeek = (date) => {
+
+        const dateOfGoal = new Date(date);
+        const dateObj = new Date();
+        const today = dateObj;
+        const week = new Date(today);
+        week.setDate(week.getDate() - 6)
+
+        console.log("Date of goal " + dateOfGoal)
+        console.log("Dateobj " + dateObj)
+        console.log("Today " + today)
+        console.log("Week " + week)
+        console.log(dateOfGoal <= week)
+
+        return dateOfGoal <= week;
+
+/*
+
         const dateOfGoal = new Date(date).getDate();
         const dateObj = new Date();
         const todayDate = dateObj.getDate();
@@ -77,18 +97,21 @@ const Goals = () => {
         const lastDayOfTheWeek = new Date(firstDayOfTheWeek)
         lastDayOfTheWeek.setDate(lastDayOfTheWeek.getDate() + 6)
         return dateOfGoal >= firstDayOfTheWeek && dateOfGoal <= lastDayOfTheWeek;
+
+ */
+
     }
 
     return (
         <>
-            {test &&
+            {goalInThisWeek &&
+            <NoGoalForWeek/>
+            }
+            {(test && !goalInThisWeek) &&
             <StatusForOneGoal goal={test}/>
             }
             {achievedGoals &&
             <PreviousGoals goals={achievedGoals}/>
-            }
-            {!goalInThisWeek &&
-            <NoGoalForWeek />
             }
         </>
     )

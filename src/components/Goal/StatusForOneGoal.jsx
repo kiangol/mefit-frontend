@@ -9,7 +9,7 @@ const StatusForOneGoal = ({goal}) => {
     })
     const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
 
-    const date = new Date(goal.endDate).getDate() + "/" + new Date(goal.endDate).getMonth() + "/" + new Date(goal.endDate).getFullYear()
+    const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
 
 
     useEffect(() => {
