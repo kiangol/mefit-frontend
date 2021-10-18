@@ -22,6 +22,6 @@
 
 .navItem:hover {
     cursor: pointer;
-    color: #ffd5a1;
+    color: var(--nav-hover);
     transform: scale(1.04);
 }

@@ -4,6 +4,7 @@
   --bg-color: #F0F3FA;
   --nav-bg: #f4e9cd;
   --nav-txt: #3D3D3D;
+  --nav-hover: #623600;
   --grey-txt: #3D3D3D;
   --card-color: #D1DBF0;
   --card-hover: #849ED7;
@@ -15,6 +16,7 @@
     --bg-color: #14213D;
     --nav-bg: #f4e9cd;
     --nav-txt: #fca311;
+    --nav-hover: #ffd5a1;
     --grey-txt: #e5e5e5;
     --card-color: #454865FF;
     --card-hover: #5c5e80;
