@@ -1,17 +1,14 @@
 import React from 'react';
 import WorkoutListItem from "./WorkoutListItem";
+import styles from './Workout.module.css';
 
 
-const WorkoutList = ({list}) => {
-
-    const handleWorkoutListItemClick = event => {
-        console.log("JEG ER VALUE" + event.currentTarget.value)
-    }
+const WorkoutList = ({list, exerciseClicked}) => {
 
     return (
         <ul>
             {list.map((workout) => (
-                <WorkoutListItem key={workout.id} itemClick={handleWorkoutListItemClick} workout={workout}/>
+                <WorkoutListItem key={workout.id} workout={workout} exerciseClicked={exerciseClicked}/>
             ))}
         </ul>
     )
