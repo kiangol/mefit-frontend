@@ -5,11 +5,11 @@ import styles from './Program.module.css';
 const ProgramItem = ({program, workoutsList}) => {
 
     const programClicked = event => {
-        let exercisesElement = event.currentTarget.children[0].children[1];
-        if (exercisesElement.style.display == "none") {
-            exercisesElement.style.display = "block";
+        let workoutsElement = event.currentTarget.children[0].children[1];
+        if (workoutsElement.style.display == "block") {
+            workoutsElement.style.display = "none";
         } else {
-            exercisesElement.style.display = "none";
+            workoutsElement.style.display = "block";
         }
     };
 
@@ -17,11 +17,11 @@ const ProgramItem = ({program, workoutsList}) => {
         <li className={styles.programCard} onClick={programClicked} value={program.id}>
             <div className={styles.programCard__body}>
                 <div className={styles.programCard__grid}>
-                    <h1>{program.name}</h1>
+                    <h2>{program.name}</h2>
                     <p className={styles.programCard__gridElement}><b>Category:</b> {program.category}</p>
                 </div>
                 <div className={styles.programCard__workouts}>
-                    <h3>Workouts:</h3>
+                    <h4>Workouts:</h4>
                     <ul>
                         {program.workouts.map((workoutId) => (
                             <li className={styles.programCard__workout}>

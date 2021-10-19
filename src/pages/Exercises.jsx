@@ -61,9 +61,7 @@ const Exercises = () => {
     };
 
     const openModal = exercise => {
-        console.log("CLICKED");
         setClickedExercise(exercise);
-        console.log("SELECTED EXERCISE: " + exercise);
         setShowModal(prev => !prev);
     };
 

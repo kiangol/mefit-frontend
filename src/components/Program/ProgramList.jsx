@@ -14,14 +14,12 @@ const ProgramList = ({programList}) => {
     useEffect(() => {
         const fetchData = async () => {
             const {data, error} = await list();
-            console.log("HEI")
             if (error) {
                 console.log(error);
                 setError(error);
                 console.log(error);
             } else {
                 setWorkouts(data);
-                console.log(workouts);
             }
         };
         fetchData();
