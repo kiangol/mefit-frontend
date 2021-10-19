@@ -41,7 +41,7 @@ const Goals = () => {
     const [currentGoal, setCurrentGoal] = useState();
     const [goalInThisWeek, setGoalInThisWeek] = useState();
     const [username] = useState({
-        username: "kian@test.no"
+        username: KeycloakService.getUsername()
     });
 
     const [error, setError] = useState();
