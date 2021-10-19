@@ -35,7 +35,7 @@ const Header = () => {
                         <span onClick={goToProfile}>{name}</span>
                     </div>
                     <div>
-                        <button type={"button"} onClick={handleLogoutClick}>Logout</button>
+                        <button className={styles.logoutButton} type={"logoutButton"} onClick={handleLogoutClick}>Log out</button>
                     </div>
                 </div>
                 }

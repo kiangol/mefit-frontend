@@ -32,9 +32,23 @@
     transform: scale(1.04);
 }
 
+.logoutButton {
+    background-color: var(--nav-txt);
+    color: var(--bg-color);
+    border-style: none;
+    border-radius: 0.5rem;
+    margin-left: 10px;
+    transition:0.2s;
+}
+
+.logoutButton:hover {
+    transform: scale(1.05);
+}
+
 button {
     background-color: var(--nav-txt);
     color: var(--bg-color);
     border-style: none;
     border-radius: 0.5rem;
+    margin-right: 0.5rem;
 }
