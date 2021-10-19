@@ -19,13 +19,21 @@ export const listOne = async (id) => {
     }
 }
 
-export const updateGoal = async (profileId, goal) => {
+export const updateGoal = async (profile, goal) => {
     try {
-        return await http.patch(`${API_URL_PROFILE}/${profileId}`, {
-            'goal': goal,
+        return await http.patch(`${API_URL_PROFILE}/${profile}/`, {
+            goal: goal
         })
     } catch (error) {
         return error;
+    }
+}
+
+export const createGoal = async (goal) => {
+    try {
+        return await http.post(`${API_URL}/`, goal)
+    } catch (error) {
+        return error
     }
 }
 
@@ -34,4 +42,5 @@ export default {
     list,
     listOne,
     updateGoal,
+    createGoal
 };
