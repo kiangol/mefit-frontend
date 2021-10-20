@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Navigation.module.css';
 import {NavLink, useHistory} from 'react-router-dom';
 import KeycloakService from "../../services/KeycloakService";
-import logo from '../../images/logo_notext.png'
+import logo from '../../images/mefit_notext.svg'
 
 const Navigation = () => {
     const history = useHistory();
@@ -32,22 +32,22 @@ const Navigation = () => {
 
                 {loggedIn && // PAGES YOU HAVE TO BE LOGGED IN TO SEE:
                 <>
-                    <NavLink exact to={"/dashboard"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/dashboard"} activeClassName={styles.active} className={styles.navItem}>
                         Dashboard
                     </NavLink>
-                    <NavLink exact to={"/programs"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/programs"} activeClassName={styles.active} className={styles.navItem}>
                         Programs
                     </NavLink>
-                    <NavLink exact to={"/workouts"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/workouts"} activeClassName={styles.active} className={styles.navItem}>
                         Workouts
                     </NavLink>
-                    <NavLink exact to={"/exercises"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/exercises"} activeClassName={styles.active} className={styles.navItem}>
                         Exercises
                     </NavLink>
-                    <NavLink exact to={"/goals"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/goals"} activeClassName={styles.active} className={styles.navItem}>
                         Goals
                     </NavLink>
-                    <NavLink exact to={"/contributor"} activeClassName={"active"} className={styles.navItem}>
+                    <NavLink exact to={"/contributor"} activeClassName={styles.active} className={styles.navItem}>
                         Contributor
                     </NavLink>
                 </>

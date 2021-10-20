@@ -19,6 +19,15 @@ export const create = async (data) => {
     }
 }
 
+export const update = async (data) => {
+    try {
+        return await http.patch(`${API_URL}/${data.id}/`, data);
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
 export const remove = async (id) => {
     try {
         return await http.delete(`${API_URL}/${id}`);
@@ -41,5 +50,6 @@ export const listOne = async (id) => {
 export default {
     list,
     create,
-    listOne
+    listOne,
+    update
 };

@@ -1,7 +1,6 @@
 
 import styles from './Workout.module.css';
 
-
 const WorkoutListItem = ({workout}) => {
 
     const workoutClicked = event => {
@@ -49,7 +48,6 @@ const WorkoutListItem = ({workout}) => {
             </div>
 
         </li>
-
     )
 };
 
