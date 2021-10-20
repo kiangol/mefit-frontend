@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 :root {
   --bg-color: #F0F3FA;
   --nav-bg: #f4e9cd;
-  --nav-txt: #f8ca5a;
+  --nav-txt: #3D3D3D;
+  --nav-hover: #623600;
   --grey-txt: #3D3D3D;
   --card-color: #D1DBF0;
   --card-hover: #849ED7;
+  --text-color: #252525;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,21 +17,36 @@
     --bg-color: #14213D;
     --nav-bg: #f4e9cd;
     --nav-txt: #fca311;
+    --nav-hover: #ffd5a1;
     --grey-txt: #e5e5e5;
     --card-color: #454865FF;
     --card-hover: #5c5e80;
+    --text-color: whitesmoke;
   }
 }
 
 body {
-  margin-top: 5rem;
+  margin-top: 6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
   background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*Filter styles*/
+.saturate { filter: saturate(3); }
+.grayscale { filter: grayscale(100%); }
+.contrast { filter: contrast(160%); }
+.brightness { filter: brightness(0.25); }
+.blur { filter: blur(3px); }
+.invert { filter: invert(100%); }
+.sepia { filter: sepia(100%); }
+.huerotate { filter: hue-rotate(180deg); }
+.rss.opacity { filter: opacity(50%); }

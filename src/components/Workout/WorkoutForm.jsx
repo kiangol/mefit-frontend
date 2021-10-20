@@ -52,14 +52,9 @@ const WorkoutForm = () => {
                 </div>
 
                 <button type={"submit"} className={"btn btn-primary btn-lg"}>Create</button>
-
             </form>
-
-
         </>
-
     )
-
 }
 
 export default withKeycloak(WorkoutForm)

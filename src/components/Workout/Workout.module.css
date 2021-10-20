@@ -1,0 +1,94 @@
+.workoutCard {
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: var(--card-color);
+    color: var(--grey-txt);
+
+}
+
+.programCard__grid {
+    display: grid;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    align-items: baseline;
+}
+
+.programCard__gridElement {
+
+}
+
+
+.workoutCard__body {
+    padding: 1rem;
+}
+
+/*
+.programCard__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 2px 0 8px 2px rgba(0,0,0,0.1);
+}*/
+
+.programCard__icon {
+    padding: 1vh;
+}
+
+.workoutCard:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    background: var(--card-hover);
+    transform: scale(1.02);
+    /*background: linear-gradient(0deg, rgb(223, 252, 253) 0%, rgb(255, 247, 229) 100%);*/
+}
+
+.workoutCard:active {
+}
+
+select {
+    background-color: var(--nav-txt);
+    color: var(--bg-color);
+    border-radius: 0.5rem;
+    border-style: none;
+}
+
+.workoutCard__exercises {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.workoutCard__exercise {
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: var(--card-color);
+    color: var(--grey-txt);
+    padding: 1vh;
+}
+
+.workoutCard__exercise:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    background: var(--card-hover);
+    transform: scale(1.02);
+}
+
+.workoutCard__exerciseExtraInfo {
+    display: none;
+}
+
+.workoutCard__exerciseGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+h4 {
+    text-decoration: underline;
+}

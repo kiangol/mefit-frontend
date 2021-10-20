@@ -61,9 +61,7 @@ const Exercises = () => {
     };
 
     const openModal = exercise => {
-        console.log("CLICKED");
         setClickedExercise(exercise);
-        console.log("SELECTED EXERCISE: " + exercise);
         setShowModal(prev => !prev);
     };
 
@@ -86,7 +84,6 @@ const Exercises = () => {
                     )}
                     <Modal showModal={showModal} setShowModal={setShowModal} exercise={clickedExercise}/>
                 </Container>
-                {/*<GlobalStyle/>*/}
 
             </main>
 

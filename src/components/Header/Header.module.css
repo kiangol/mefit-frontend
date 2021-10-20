@@ -2,9 +2,12 @@
     background: var(--nav-bg);
     display: flex;
     flex-direction: row;
-    font-size: larger;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
     color: var(--nav-txt);
     width: 100%;
+    align-items: center;
     position: fixed;
     top: 0;
     z-index: 999;
@@ -19,6 +22,8 @@
 .userAndLogoutDiv {
     display: flex;
     flex-direction: row;
+    font-weight: normal;
+    margin: 1.5rem;
 }
 
 .userAndLogoutDiv_User:hover {
@@ -27,9 +32,28 @@
     transform: scale(1.04);
 }
 
+.logoutButton {
+    background-color: var(--nav-txt);
+    color: var(--bg-color);
+    border-style: none;
+    border-radius: 0.5rem;
+    margin-left: 10px;
+    transition:0.2s;
+}
+
+.logoutButton:hover {
+    transform: scale(1.05);
+}
+
 button {
     background-color: var(--nav-txt);
     color: var(--bg-color);
     border-style: none;
     border-radius: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+
+.active {
+    color: red;
 }
