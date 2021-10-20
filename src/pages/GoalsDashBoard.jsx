@@ -100,6 +100,7 @@ const GoalsDashBoard = () => {
         setGoalDate(new Date(clickedDate))
 
         console.log(new Date(clickedDate).getDay())
+        console.log(userId.bmi)
         return newResultFormat === newCalDateFormat
     }
 
@@ -111,7 +112,7 @@ const GoalsDashBoard = () => {
             <article className="col">
                 <div className="card-body">
                     <div className="calendar">
-                        <Calendar id={"endDate"} onChange={onChange} value={calDate} />
+                        <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate} />
                     </div>
                 </div>
             </article>

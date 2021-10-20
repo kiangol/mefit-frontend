@@ -21,6 +21,8 @@ const Dashboard = () => {
     const categories = new Set();
     const programGroupedByCategory = new Map();
 
+    const [difficulty, setDifficulty] = useState()
+
     useEffect(() => {
         const fetchData = async () => {
             const {data, error} = await list();
