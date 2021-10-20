@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Navigation.module.css';
 import {NavLink, useHistory} from 'react-router-dom';
 import KeycloakService from "../../services/KeycloakService";
-import logo from '../../images/logo_notext.png'
+import logo from '../../images/mefit_notext.svg'
 
 const Navigation = () => {
     const history = useHistory();

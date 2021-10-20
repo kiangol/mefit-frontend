@@ -12,6 +12,7 @@ const Profile = ({profile}) => {
 
     const firstName = KeycloakService.getFirstName();
     const lastName = KeycloakService.getLastName();
+    const username = KeycloakService.getUsername();
 
     const onEditClick = () => {
         history.push("/profile/edit")
@@ -36,6 +37,7 @@ const Profile = ({profile}) => {
                 </div>
                 <div className="card-body">
                     <h1>{firstName.charAt(0).toUpperCase() + firstName.slice(1)} {lastName.charAt(0).toUpperCase() + lastName.slice(1)}</h1>
+                    <p>{username}</p>
                 </div>
                 <div className={styles.profileCard__body}>
                     <ul className="list-group list-group-flush">
