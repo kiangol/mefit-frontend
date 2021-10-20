@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {create} from '../../api/ProfileAPI';
 import KeycloakService from "../../services/KeycloakService";
+import Button from 'react-bootstrap/Button';
 
 const ProfileForm = () => {
 
@@ -32,11 +33,11 @@ const ProfileForm = () => {
 
         <>
             <form onSubmit={onFormSubmit}>
-                <h1>Create a new profile</h1>
                 <div className="form-group">
                     <div className="form-group col-md-6">
                         <label htmlFor="height">Height</label>
-                        <input type="text"
+                        <input type="number"
+                               required
                                className="form-control"
                                id="height"
                                placeholder="Height in cm"
@@ -45,7 +46,8 @@ const ProfileForm = () => {
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="weight">Weight</label>
-                        <input type="text"
+                        <input type="number"
+                               required
                                className="form-control"
                                id="weight"
                                placeholder="Weight in kg"
@@ -75,7 +77,7 @@ const ProfileForm = () => {
                 <button type={"submit"} className={"btn btn-primary btn-lg"}>Create</button>
             </form>
         </>
-    );
+);
 };
 
 export default withKeycloak(ProfileForm);

@@ -5,9 +5,10 @@ import Profile from "../components/Profile/Profile";
 import profilePicture from '../images/logo_notext.png';
 import ProfileForm from "../components/Profile/ProfileForm";
 import {listOne} from "../api/ProfileAPI";
+import AppContainer from "../hoc/AppContainer";
 
 const ProfilePage = () => {
-    const name = KeycloakService.getName();
+    const name = KeycloakService.getFirstName()
 
     const [profile, setProfile] = useState();
 
@@ -30,21 +31,23 @@ const ProfilePage = () => {
 
     return (
         <>
-            <main>
+            <AppContainer>
                 {(!profile) && (
                     <>
+                        <h1>You don't have a profile yet!</h1>
+                        <h2>Create a profile</h2>
                         <ProfileForm/>
                     </>
                 )}
                 {(profile) && (
                     <>
-                        <img src={profilePicture} alt="profilepic" width="180" height="180"/>
-                        <h1>My Profile</h1>
-                        <Profile name={name}/>
-                        <button>Update profile</button>
+                        <div align="center">
+                            <h1>My Profile</h1>
+                            <Profile profile={profile}/>
+                        </div>
                     </>
                 )}
-            </main>
+            </AppContainer>
         </>
     );
 };

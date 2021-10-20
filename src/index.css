@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 :root {
   --bg-color: #F0F3FA;
@@ -25,7 +26,7 @@
 }
 
 body {
-  margin-top: 5rem;
+  margin-top: 6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Lato', sans-serif;

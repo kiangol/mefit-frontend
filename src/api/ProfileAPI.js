@@ -19,6 +19,15 @@ export const create = async (data) => {
     }
 }
 
+export const remove = async (id) => {
+    try {
+        return await http.delete(`${API_URL}/${id}`);
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
 export const listOne = async (id) => {
     try {
         return await http.post(`${API_URL}`, {

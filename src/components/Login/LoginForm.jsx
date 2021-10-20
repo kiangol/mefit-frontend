@@ -28,6 +28,8 @@ const LoginForm = ({onRegisterNewUserClick}) => {
 
     return (
         <>
+            <div className={"login-root"}>
+
             <form className={"mt-3"} onSubmit={onFormSubmit} >
                 <h1>Login to MeFit</h1>
                 <p>Welcome to MeFit, the place to get fit!</p>
@@ -56,6 +58,7 @@ const LoginForm = ({onRegisterNewUserClick}) => {
                 <button type={"button"} className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Sign up
                 </button>
             </form>
+            </div>
         </>
     );
 };
