@@ -37,6 +37,14 @@ export const createGoal = async (goal) => {
     }
 }
 
+export const updateWorkoutInGoal = async (goalId, workouts) => {
+    try {
+        return await http.patch(`${API_URL}/${goalId}`, workouts)
+    } catch (error) {
+        return error
+    }
+}
+
 
 export default {
     list,

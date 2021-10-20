@@ -40,10 +40,10 @@ const StatusForOneGoal = ({goal}) => {
         }
         const [ complete, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.complete])
         setWorkouts({ complete, pending })
-        //Call API and update.
 
     }
-    console.log(workouts);
+
+
     return (
         <>
             <h2>Current goal end date: {date}</h2>
