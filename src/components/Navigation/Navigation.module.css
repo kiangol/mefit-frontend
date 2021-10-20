@@ -18,10 +18,16 @@
     color: var(--nav-txt);
     padding: 0.4rem;
     text-decoration: none;
+    transition: all ease-in-out .2s;
 }
 
 .navItem:hover {
     cursor: pointer;
     color: var(--nav-hover);
-    transform: scale(1.04);
+    border-bottom: 1px solid var(--nav-txt);
+    transform: scale(1.0);
+}
+
+.active {
+    border-bottom: 3px solid whitesmoke;
 }

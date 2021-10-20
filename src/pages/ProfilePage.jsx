@@ -31,23 +31,27 @@ const ProfilePage = () => {
 
     return (
         <>
-            <AppContainer>
+            <div align="center">
                 {(!profile) && (
                     <>
                         <h1>You don't have a profile yet!</h1>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                         <h2>Create a profile</h2>
                         <ProfileForm/>
                     </>
                 )}
                 {(profile) && (
                     <>
-                        <div align="center">
+                        {/*<div align="center">*/}
                             <h1>My Profile</h1>
                             <Profile profile={profile}/>
-                        </div>
+                        {/*</div>*/}
                     </>
                 )}
-            </AppContainer>
+            </div>
         </>
     );
 };
