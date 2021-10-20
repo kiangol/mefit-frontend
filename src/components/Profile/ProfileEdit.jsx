@@ -24,7 +24,7 @@ const ProfileEdit = ({toEdit}) => {
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
-        await create(profile);
+        await update(profile);
         alert('Profile created');
     };
 
