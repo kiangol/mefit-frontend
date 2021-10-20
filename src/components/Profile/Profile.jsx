@@ -14,14 +14,16 @@ const Profile = ({profile}) => {
     const lastName = KeycloakService.getLastName();
 
     const onEditClick = () => {
-
+        history.push("/profile/edit")
     };
+
 
     const deleteProfile = async (event) => {
         if (window.confirm('Are you sure you want to delete your profile?')) {
             event.preventDefault();
             await remove(profile.id);
             alert('Profile deleted');
+            window.location.reload(false);
         }
     };
 
@@ -43,7 +45,7 @@ const Profile = ({profile}) => {
                     </ul>
                 </div>
                 <div className={styles.profileCard__body}>
-                    <a href="#" className={styles.a} style={{margin:"1rem"}} onClick={() => history.push("/profile/edit")}>Edit</a>
+                    <a href="#" className={styles.a} style={{margin:"1rem"}} onClick={onEditClick}>Edit</a>
                     <a href="#" className={styles.a} style={{color: "red", margin:"1rem"}} onClick={deleteProfile}>Delete profile</a>
                 </div>
             </div>

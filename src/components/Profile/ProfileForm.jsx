@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {create} from '../../api/ProfileAPI';
 import KeycloakService from "../../services/KeycloakService";
+import {useHistory} from "react-router-dom";
 
 const ProfileForm = () => {
 
+    const history = useHistory();
 
     const [profile, setProfile] = useState({
         username: KeycloakService.getUsername(),
@@ -26,6 +28,7 @@ const ProfileForm = () => {
         event.preventDefault();
         await create(profile);
         alert('Profile created');
+        window.location.reload(false);
     };
 
 

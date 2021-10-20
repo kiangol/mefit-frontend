@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
-import {create} from '../../api/ProfileAPI';
+import {update} from '../../api/ProfileAPI';
 import KeycloakService from "../../services/KeycloakService";
+import {useHistory} from "react-router-dom";
 
 const ProfileEdit = ({toEdit}) => {
 
+    const history = useHistory();
 
     const [profile, setProfile] = useState({
+        id: toEdit.id,
         username: KeycloakService.getUsername(),
         weight: toEdit.weight,
         height: toEdit.height,
@@ -24,8 +27,9 @@ const ProfileEdit = ({toEdit}) => {
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
-        await create(profile);
-        alert('Profile created');
+        await update(profile);
+        alert('Profile updated');
+        history.push("/profile")
     };
 
 
@@ -78,7 +82,7 @@ const ProfileEdit = ({toEdit}) => {
                     </div>
                 </div>
                 <br/>
-                <button type={"submit"} className={"btn btn-primary btn-lg"}>Create</button>
+                <button type={"submit"} className={"btn btn-primary btn-lg"}>Update</button>
             </form>
         </>
     );
