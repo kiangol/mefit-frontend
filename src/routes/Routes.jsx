@@ -13,6 +13,7 @@ import Workouts from "../pages/Workouts";
 import ProfilePage from "../pages/ProfilePage";
 import Contributors from "../pages/Contributors";
 import NewWorkout from "../pages/NewWorkout";
+import Goals from "../pages/Goals";
 
 // Might redirect "/" to "/login" and have "/" as dashboard.
 const Routes = () => {
@@ -30,6 +31,7 @@ const Routes = () => {
                     <Route exact path={"/register"} component={Register}/>
                     <Route exact path={"/exercises"} component={Exercises}/>
                     <Route exact path={"/dashboard"} component={Dashboard}/>
+                    <Route exact path={"/goals"} component={Goals}/>
                     <Route exact path={"/programs"} component={Programs}/>
                     <Route exact path={"/workouts"} component={Workouts}/>
                     <Route exact path={"/workouts/create"} component={NewWorkout}/>
