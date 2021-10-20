@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
-import {create} from '../../api/ProfileAPI';
+import {update} from '../../api/ProfileAPI';
 import KeycloakService from "../../services/KeycloakService";
 
 const ProfileEdit = ({toEdit}) => {
