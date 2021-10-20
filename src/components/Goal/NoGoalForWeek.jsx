@@ -52,7 +52,7 @@ const NoGoalForWeek = () => {
         newGoal.program = program.id;
         console.log(JSON.stringify(newGoal));
         const createdGoal = await createGoal(newGoal);
-        if(createdGoal){
+        if (createdGoal) {
             console.log("Heihei")
             await updateGoal(profile.id, createdGoal.data.id);
 
@@ -70,12 +70,12 @@ const NoGoalForWeek = () => {
                 <>
                     <h4 key={program.name}>{program.name}</h4>
                     <p key={program.id}>Category: {program.category}</p>
-                    <button key={program.category} type={"button"} onClick={() => handleSetProgramAsGoalClick(program)}>Set as goal</button>
+                    <button key={program.category} type={"button"}
+                            onClick={() => handleSetProgramAsGoalClick(program)}>Set as goal
+                    </button>
                 </>
             ))
-
             }
-            <h1>Create Custom Program</h1>
         </>
     )
 }

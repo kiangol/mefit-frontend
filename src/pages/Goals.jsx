@@ -9,34 +9,7 @@ import CreateCustomProgram from "../components/Goal/CreateCustomProgram";
 
 
 const Goals = () => {
-    const [test, setTest] = useState({
-        "id": 2,
-        "endDate": "2021-10-11T10:08:40+0000",
-        "achieved": true,
-        "program": {
-            "id": 2
-        },
-        "workouts": [
-            {
-                "id": 1,
-                "name": "Just do it",
-                "type": "Upper body day",
-                "complete": false,
-                "sets": [],
-                "goals": [],
-                "programs": []
-            },
-            {
-                "id": 2,
-                "name": "Don't stop",
-                "type": "Lower body day",
-                "complete": true,
-                "sets": [],
-                "goals": [],
-                "programs": []
-            }]
 
-    })
     const [achievedGoals, setAchievedGoals] = useState([]);
     const [currentGoal, setCurrentGoal] = useState();
     const [goalInThisWeek, setGoalInThisWeek] = useState();
