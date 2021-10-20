@@ -23,10 +23,10 @@ const ProgramItem = ({program, workoutsList}) => {
                 <div className={styles.programCard__workouts}>
                     <h4>Workouts:</h4>
                     <ul>
-                        {program.workouts.map((workoutId) => (
+                        {program.workouts.map((workout) => (
                             <li className={styles.programCard__workout}>
-                                <p><b>Name:</b> {workoutsList[workoutId-1].name}</p>
-                                <p><b>Type:</b> {workoutsList[workoutId-1].type}</p>
+                                <p><b>Name:</b> {workout.name}</p>
+                                <p><b>Type:</b> {workout.type}</p>
                             </li>
                         ))}
                     </ul>
