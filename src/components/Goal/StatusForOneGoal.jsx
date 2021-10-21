@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
+import {markGoalCompleted} from "../../api/GoalAPI";
 
 const StatusForOneGoal = ({goal}) => {
 
@@ -7,8 +8,7 @@ const StatusForOneGoal = ({goal}) => {
         pending: [],
         complete: []
     })
-    //const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
-    const [allWorkouts, setAllWorkouts] = useState([]);
+    const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
 
     const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
 
@@ -33,15 +33,18 @@ const StatusForOneGoal = ({goal}) => {
 
     const handleCompletedWorkoutClick = async workout => {
         const localWorkouts = {...workouts}
+        let workoutToComplete;
         for (let i = 0; i < localWorkouts.pending.length; i++) {
             if (localWorkouts.pending[i].id === workout.id) {
                 localWorkouts.pending[i].complete = true;
+                workoutToComplete = localWorkouts.pending[i].id;
                 break;
             }
         }
         const [ complete, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.complete])
         setWorkouts({ complete, pending })
 
+        await markGoalCompleted(goal.id, workoutToComplete)
     }
 
 

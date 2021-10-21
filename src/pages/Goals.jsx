@@ -25,7 +25,8 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                if(data.goal !== null) {
+                console.log(JSON.stringify(data))
+                if(data.goal) {
                     setCurrentGoal(data.goal);
                     setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
                 }

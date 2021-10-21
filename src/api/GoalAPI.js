@@ -22,7 +22,7 @@ export const listOne = async (id) => {
 export const updateGoal = async (profile, goal) => {
     try {
         return await http.patch(`${API_URL_PROFILE}/${profile}/`, {
-            goal: goal
+            goal: goal,
         })
     } catch (error) {
         return error;
@@ -39,7 +39,19 @@ export const createGoal = async (goal) => {
 
 export const updateWorkoutInGoal = async (goalId, workouts) => {
     try {
-        return await http.patch(`${API_URL}/${goalId}`, workouts)
+        return await http.patch(`${API_URL}/${goalId}`, {
+            workouts: workouts
+        })
+    } catch (error) {
+        return error
+    }
+}
+//api/goal/{goalid}/complete/{workoutid}
+export const markGoalCompleted = async (goalId, workoutId) => {
+    try {
+        return await http.patch(`${API_URL}/${goalId}/complete/${workoutId}`, {
+            complete: true
+        })
     } catch (error) {
         return error
     }
@@ -50,5 +62,7 @@ export default {
     list,
     listOne,
     updateGoal,
-    createGoal
+    createGoal,
+    updateWorkoutInGoal,
+    markGoalCompleted
 };

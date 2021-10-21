@@ -10,7 +10,6 @@ const AddCustomWorkouts = ({preWorkouts}) => {
     const [selectedWorkoutsToShow, setSelectedWorkoutsToShow] = useState([...preWorkouts]);
 
     useEffect(() => {
-        console.log("Pre: \n" + selectedWorkouts)
         const fetchWorkouts = async () => {
             const {data, error} = await list();
             if (error) {
@@ -54,7 +53,7 @@ const AddCustomWorkouts = ({preWorkouts}) => {
 
     const handleCreateCustomProgram = async (event) => {
         event.preventDefault();
-        console.log(selectedWorkouts)
+
        // await updateGoal(profile.id, selectedWorkouts)
     }
     return (

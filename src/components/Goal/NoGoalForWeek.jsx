@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/ProgramAPI";
-import {createGoal, updateGoal} from "../../api/GoalAPI";
+import {createGoal, updateGoal, updateWorkoutInGoal} from "../../api/GoalAPI";
 import {useHistory} from "react-router-dom";
 import KeycloakService from "../../services/KeycloakService";
 import {listOne} from "../../api/ProfileAPI";
+import {updateWorkout} from "../../api/WorkoutAPI";
 
 const NoGoalForWeek = () => {
 
@@ -16,7 +17,7 @@ const NoGoalForWeek = () => {
     const [goal, setGoal] = useState({
         endDate: "",
         achieved: false,
-        program: null,
+        program: "",
         workouts: []
     })
     const [username] = useState({
@@ -45,16 +46,24 @@ const NoGoalForWeek = () => {
         fetchProfile();
     }, [])
 
+    const listProgramWorkoutsIds = (workouts) => {
+        let listOfIds = [];
+        for (let i = 0; i < workouts.length; i++) {
+            listOfIds.push(workouts[i].id)
+        }
+        return listOfIds;
+    }
+
     const handleSetProgramAsGoalClick = async program => {
         const newGoal = {...goal}
         newGoal.endDate = new Date();
         newGoal.program = program.id;
-        console.log(JSON.stringify(newGoal));
         const createdGoal = await createGoal(newGoal);
-        if (createdGoal) {
-            console.log("Heihei")
-            await updateGoal(profile.id, createdGoal.data.id);
+        newGoal.workouts = listProgramWorkoutsIds(program.workouts);
+        await updateWorkoutInGoal(createdGoal.data.id, newGoal.workouts)
 
+        if (createdGoal) {
+            await updateGoal(profile.id, createdGoal.data.id);
         }
     }
 
