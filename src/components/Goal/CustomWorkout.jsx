@@ -108,7 +108,7 @@ const CustomWorkout = ({preWorkouts}) => {
         let localCustomWorkout = {...customWorkout}
         localCustomWorkout.sets = listOfExercises
         const createdCustomWorkout = create(localCustomWorkout)
-        setAllWorkouts([...allWorkouts, createdCustomWorkout])
+        setAllWorkouts( [...allWorkouts, createdCustomWorkout]);
         await updateWorkoutInGoal(profile.goal.id, allWorkouts)
     }
     return (
