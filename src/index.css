@@ -10,6 +10,7 @@
   --card-color: #D1DBF0;
   --card-hover: #849ED7;
   --text-color: #252525;
+  --filter-color: invert(19%) sepia(0%) saturate(1535%) hue-rotate(186deg) brightness(104%) contrast(85%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,11 +23,12 @@
     --card-color: #454865FF;
     --card-hover: #5c5e80;
     --text-color: whitesmoke;
+    --filter-color: invert(64%) sepia(67%) saturate(1097%) hue-rotate(351deg) brightness(101%) contrast(98%);
   }
 }
 
 body {
-  margin-top: 6rem;
+  margin-top: 8rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Lato', sans-serif;

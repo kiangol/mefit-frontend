@@ -23,12 +23,12 @@
     display: flex;
     flex-direction: row;
     font-weight: normal;
-    margin: 1.5rem;
+    margin: 1.0rem;
 }
 
 .userAndLogoutDiv_User:hover {
     cursor: pointer;
-    color: #ffd5a1;
+    color: var(--nav-hover);
     transform: scale(1.04);
 }
 
@@ -51,4 +51,9 @@ button {
     border-style: none;
     border-radius: 0.5rem;
     margin-right: 0.5rem;
+}
+
+
+.active {
+    color: red;
 }
