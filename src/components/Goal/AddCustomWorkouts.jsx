@@ -1,39 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/WorkoutAPI";
-import {createProgram} from "../../api/ProgramAPI";
+import {updateGoal} from "../../api/GoalAPI";
 
-const CreateCustomProgram = () => {
+const AddCustomWorkouts = ({preWorkouts}) => {
 
     const [workouts, setWorkouts] = useState();
-    const [selectedWorkouts, setSelectedWorkouts] = useState([]);
-    const [selectedWorkoutsToShow, setSelectedWorkoutsToShow] = useState([]);
-    const [program, setProgram] = useState({
-        "name": "",
-        "category": "",
-        "publicised": true,
-        "goal": [],
-        "workouts": [],
-    })
+    const [selectedWorkouts, setSelectedWorkouts] = useState([...preWorkouts]);
+    const [selectedWorkoutsToShow, setSelectedWorkoutsToShow] = useState([...preWorkouts]);
 
     useEffect(() => {
+        console.log("Pre: \n" + selectedWorkouts)
         const fetchWorkouts = async () => {
             const {data, error} = await list();
             if (error) {
                 console.log(error);
             } else {
+                for (let i = 0; i < data.length; i++) {
+
+                }
                 setWorkouts(data);
             }
         };
         fetchWorkouts();
     }, [])
-
-    const onCustomProgramChange = event => {
-        setProgram({
-            ...program,
-            [event.target.id]: event.target.value
-        });
-    };
 
     const handleSelectingWorkouts = (workout) => {
         const localSelectedWorkouts = [...selectedWorkouts];
@@ -64,36 +54,13 @@ const CreateCustomProgram = () => {
 
     const handleCreateCustomProgram = async (event) => {
         event.preventDefault();
-        program.workouts = selectedWorkouts;
-        await createProgram(program)
+        console.log(selectedWorkouts)
+       // await updateGoal(profile.id, selectedWorkouts)
     }
     return (
         <>
-            <h1>CreateCustomProgram</h1>
+            <h1>Add Workouts to Goal</h1>
             <form onSubmit={handleCreateCustomProgram}>
-                <div>
-                    <label>Name your custom program</label>
-                    <input type={"text"}
-                           required
-                           placeholder={"Program name"}
-                           id={"name"}
-                           onChange={onCustomProgramChange}
-                    />
-                </div>
-                <div>
-                    <label>Select a category</label>
-                    <select
-                        id={"category"}
-                        defaultValue={"Select category"}
-                        onChange={onCustomProgramChange}
-                    >
-                        <option value={"0"}>Select category</option>
-                        <option value={"Beginner"}>Beginner</option>
-                        <option value={"Intermediate"}>Intermediate</option>
-                        <option value={"Advanced"}>Advanced</option>
-                        <option value={"Hard"}>Hard</option>
-                    </select>
-                </div>
                 <div>
                     {workouts &&
                     workouts.map((workout) => (
@@ -120,4 +87,4 @@ const CreateCustomProgram = () => {
     )
 }
 
-export default withKeycloak(CreateCustomProgram)
+export default withKeycloak(AddCustomWorkouts)

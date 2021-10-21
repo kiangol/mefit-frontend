@@ -3,20 +3,19 @@ import withKeycloak from "../hoc/withKeycloak";
 import {list, listOne} from "../api/ProfileAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
-import PreviousGoals from "../components/Goal/PreviousGoals";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
-import CreateCustomProgram from "../components/Goal/CreateCustomProgram";
+import CreateCustomProgram from "../components/Goal/AddCustomWorkouts";
+import AddCustomWorkouts from "../components/Goal/AddCustomWorkouts";
 
 
 const Goals = () => {
 
-    const [achievedGoals, setAchievedGoals] = useState([]);
     const [currentGoal, setCurrentGoal] = useState();
     const [goalInThisWeek, setGoalInThisWeek] = useState();
+    const [profile, setProfile] = useState();
     const [username] = useState({
         username: KeycloakService.getUsername()
     });
-
     const [error, setError] = useState();
 
     useEffect(() => {
@@ -25,40 +24,16 @@ const Goals = () => {
             if (error) {
                 console.log(error)
             } else {
-                console.log(data.goal)
-                setCurrentGoal(data.goal)
+                setProfile(data);
+                if(data.goal !== null) {
+                    setCurrentGoal(data.goal);
+                    setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
+                }
             }
-        }
-        /* const fetchData = async () => {
-             const achievedGoals = [];
-             const {data, error} = await listOne(6);
-             if (error) {
-                 console.log(error);
-                 setError(error)
-             } else {
+        };
+        fetchProfile();
+    }, []);
 
-                 for (let goal of data) {
-                     if (!goal.achieved) {
-                         setCurrentGoal(goal)
-                     } else {
-                         achievedGoals.push([
-                             ...achievedGoals,
-                             goal
-                         ])
-                     }
-                 }
-                 setAchievedGoals(achievedGoals)
-
-             }
-         };
-         */
-        const setDate = () => {
-            setGoalInThisWeek(isGoalThisWeek(test.endDate));
-        }
-        //fetchData();
-        //fetchProfile();
-        //setDate()
-    }, [])
 
     const isGoalThisWeek = (date) => {
 
@@ -67,43 +42,21 @@ const Goals = () => {
         const today = dateObj;
         const week = new Date(today);
         week.setDate(week.getDate() - 6)
-
-        console.log("Date of goal " + dateOfGoal)
-        console.log("Dateobj " + dateObj)
-        console.log("Today " + today)
-        console.log("Week " + week)
-        console.log(dateOfGoal <= week)
-
         return dateOfGoal <= week;
-
-        /*
-
-                const dateOfGoal = new Date(date).getDate();
-                const dateObj = new Date();
-                const todayDate = dateObj.getDate();
-                const todayDay = dateObj.getDay();
-                const firstDayOfTheWeek = new Date(dateObj.setDate(todayDate-todayDay))
-                const lastDayOfTheWeek = new Date(firstDayOfTheWeek)
-                lastDayOfTheWeek.setDate(lastDayOfTheWeek.getDate() + 6)
-                return dateOfGoal >= firstDayOfTheWeek && dateOfGoal <= lastDayOfTheWeek;
-
-         */
-
     }
 
     return (
         <>
             {!goalInThisWeek &&
-            <>
-                <NoGoalForWeek/>
-                <CreateCustomProgram />
-            </>
+            <NoGoalForWeek/>
             }
-            {(!test && !goalInThisWeek) &&
+
+            {currentGoal &&
+            <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
+            }
+
+            {(currentGoal && !goalInThisWeek) &&
             <StatusForOneGoal goal={currentGoal}/>
-            }
-            {achievedGoals &&
-            <PreviousGoals goals={achievedGoals}/>
             }
         </>
     )

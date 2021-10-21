@@ -5,7 +5,6 @@ import {createGoal, updateGoal} from "../../api/GoalAPI";
 import {useHistory} from "react-router-dom";
 import KeycloakService from "../../services/KeycloakService";
 import {listOne} from "../../api/ProfileAPI";
-import {getDate} from "date-fns";
 
 const NoGoalForWeek = () => {
 

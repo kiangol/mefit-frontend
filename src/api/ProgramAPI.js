@@ -10,15 +10,6 @@ export const list = async () => {
     }
 }
 
-export const createProgram = async program => {
-    try {
-        return await http.post(`${API_URL}/`, program)
-    } catch (error) {
-        return error;
-    }
-}
-
 export default {
     list,
-    createProgram
 };

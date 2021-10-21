@@ -7,7 +7,8 @@ const StatusForOneGoal = ({goal}) => {
         pending: [],
         complete: []
     })
-    const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
+    //const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
+    const [allWorkouts, setAllWorkouts] = useState([]);
 
     const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
 
