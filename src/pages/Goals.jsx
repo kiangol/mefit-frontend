@@ -4,8 +4,8 @@ import {list, listOne} from "../api/ProfileAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
-import CreateCustomProgram from "../components/Goal/AddCustomWorkouts";
-import AddCustomWorkouts from "../components/Goal/AddCustomWorkouts";
+import CreateCustomProgram from "../components/Goal/CustomWorkout";
+import AddCustomWorkouts from "../components/Goal/CustomWorkout";
 
 
 const Goals = () => {
@@ -25,7 +25,6 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                console.log(JSON.stringify(data))
                 if(data.goal) {
                     setCurrentGoal(data.goal);
                     setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));

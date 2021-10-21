@@ -30,7 +30,6 @@ const NoGoalForWeek = () => {
             if (error) {
                 console.log("error " + error)
             } else {
-                console.log("profile " + JSON.stringify(data))
                 setProfile(data);
             }
         }

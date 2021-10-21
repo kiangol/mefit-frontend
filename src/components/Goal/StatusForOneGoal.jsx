@@ -6,7 +6,7 @@ const StatusForOneGoal = ({goal}) => {
 
     const [ workouts, setWorkouts ] = useState({
         pending: [],
-        complete: []
+        completed: []
     })
     const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
 
@@ -15,56 +15,54 @@ const StatusForOneGoal = ({goal}) => {
 
     useEffect(() => {
         const calculateStatus = () => {
-            const [ complete, pending ] = sortWorkouts(goal.workouts)
-
-            setWorkouts({ complete, pending })
+            const [ completed, pending ] = sortWorkouts(goal.workouts)
+            setWorkouts({ completed, pending })
         };
         calculateStatus();
     }, [])
 
     const sortWorkouts = (workouts) => {
-        const complete = workouts.filter(workout => workout.complete)
-        const pending = workouts.filter(workout => !workout.complete)
+        const completed = workouts.filter(workout => workout.completed)
+        const pending = workouts.filter(workout => !workout.completed)
         return [
-            complete,
+            completed,
             pending
         ]
     }
 
     const handleCompletedWorkoutClick = async workout => {
         const localWorkouts = {...workouts}
-        let workoutToComplete;
+        let workoutToCompleted;
         for (let i = 0; i < localWorkouts.pending.length; i++) {
-            if (localWorkouts.pending[i].id === workout.id) {
-                localWorkouts.pending[i].complete = true;
-                workoutToComplete = localWorkouts.pending[i].id;
+            if (localWorkouts.pending[i].workout.id === workout.workout.id) {
+                localWorkouts.pending[i].workout.completed = true;
+                workoutToCompleted = localWorkouts.pending[i].workout.id;
                 break;
             }
         }
-        const [ complete, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.complete])
-        setWorkouts({ complete, pending })
-
-        await markGoalCompleted(goal.id, workoutToComplete)
+        const [ completed, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.completed])
+        setWorkouts({ completed, pending })
+        await markGoalCompleted(goal.id, workoutToCompleted)
     }
 
 
     return (
         <>
             <h2>Current goal end date: {date}</h2>
-            <h2>{workouts.complete.length} out of {allWorkouts.length} workouts done for this goal.</h2>
+            <h2>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h2>
             <h2>Pending workouts: </h2>
             {workouts.pending.map((workout) => (
                     <>
-                        <h4 key={workout.id}>{workout.name}</h4>
+                        <h4 key={workout.workout.id}>{workout.workout.name}</h4>
                         <button onClick={() => handleCompletedWorkoutClick(workout)}>Completed</button>
                     </>
                 )
             )}
 
             <h2>Completed workouts: </h2>
-            {workouts.complete.map((workout) => (
+            {workouts.completed.map((workout) => (
                     <>
-                        <h4 key={workout.id}>{workout.name}</h4>
+                        <h4 key={workout.workout.id}>{workout.workout.name}</h4>
                     </>
                 )
             )}
