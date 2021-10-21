@@ -1,9 +1,5 @@
 .profileImg {
-    border-radius: 50%;
-    border-width: 2px;
-    border-color: #F0F3FA;
-    border-style: solid;
-    /*background: var(--nav-txt);*/
+    filter: var(--filter-color);
 }
 
 .profileCard {
