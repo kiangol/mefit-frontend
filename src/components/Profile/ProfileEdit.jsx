@@ -37,7 +37,7 @@ const ProfileEdit = ({toEdit}) => {
 
         <>
             <form onSubmit={onFormSubmit}>
-                <div className="form-group">
+                <div className="form-group" align="center">
                     <div className="form-group col-md-6">
                         <label htmlFor="height">Height</label>
                         <input type="number"

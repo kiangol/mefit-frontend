@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import { useSpring, animated } from 'react-spring';
+import React, {useCallback, useEffect, useRef} from 'react';
+import {animated, useSpring} from 'react-spring';
 import styled from 'styled-components';
-import { MdClose } from 'react-icons/md';
+import {MdClose} from 'react-icons/md';
 
 const Background = styled.div`
   width: 100%;
@@ -18,7 +18,7 @@ const ModalWrapper = styled.div`
   transition: 0.3s;
   width: 800px;
   height: 500px;
-  background: #fff;
+  background: var(--bg-color);
   color: #000;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -45,7 +45,7 @@ const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.8;
-  color: #141414;
+  color: var(--text-color);
   p {
     margin-bottom: 1rem;
   }
@@ -68,7 +68,7 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal, exercise }) => {
+export const Modal = ({showModal, setShowModal, exercise}) => {
     const modalRef = useRef();
 
     const animation = useSpring({
@@ -95,6 +95,10 @@ export const Modal = ({ showModal, setShowModal, exercise }) => {
         [setShowModal, showModal]
     );
 
+    const handleVideoClick = (videoLink) => {
+        window.open(videoLink, "_blank")
+    }
+
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
@@ -109,11 +113,13 @@ export const Modal = ({ showModal, setShowModal, exercise }) => {
                 <Background onClick={closeModal} ref={modalRef}>
                     <animated.div style={animation}>
                         <ModalWrapper showModal={showModal}>
-                            <ModalImg src={exercise.image} alt='camera' />
+                            <ModalImg src={exercise.image} alt='camera'/>
                             <ModalContent>
                                 <h1>{exercise.name}</h1>
                                 <p>{exercise.description}</p>
-                                <button>Add to program</button>
+                                <div>
+                                    <button onClick={() => handleVideoClick(exercise.vidLink)}>Watch video</button>
+                                </div>
                             </ModalContent>
                             <CloseModalButton
                                 aria-label='Close modal'

@@ -1,10 +1,9 @@
 import React from 'react';
 import KeycloakService from "../../services/KeycloakService";
 import {remove} from "../../api/ProfileAPI";
-import profilePicture from "../../images/mefit_orange.svg";
+import profilePicture from "../../images/mefit_notext.svg";
 import {useHistory} from "react-router-dom";
 import styles from './Profile.module.css';
-import {Button} from "react-bootstrap";
 
 const Profile = ({profile}) => {
 
@@ -15,7 +14,7 @@ const Profile = ({profile}) => {
     const username = KeycloakService.getUsername();
 
     const onEditClick = () => {
-        history.push("/profile/edit")
+        history.push("/profile/edit");
     };
 
 
@@ -30,25 +29,28 @@ const Profile = ({profile}) => {
 
     return (
         <>
-            <div className={styles.profileCard} style={{width: "30rem"}}>
-                <div align="center">
-                    <img style={{width: "50%", marginTop: "2rem"}} src={profilePicture}
-                         alt={"profile picture"}/>
-                </div>
-                <div className="card-body">
-                    <h1>{firstName.charAt(0).toUpperCase() + firstName.slice(1)} {lastName.charAt(0).toUpperCase() + lastName.slice(1)}</h1>
-                    <p>{username}</p>
-                </div>
-                <div className={styles.profileCard__body}>
-                    <ul className="list-group list-group-flush">
-                        <h5>{profile.height} cm</h5>
-                        <h5>{profile.weight} kg</h5>
-                        <h5>BMI {Math.round(profile.bmi * 10) / 10}</h5>
-                    </ul>
-                </div>
-                <div className={styles.profileCard__body}>
-                    <a href="#" className={styles.a} style={{margin:"1rem"}} onClick={onEditClick}>Edit</a>
-                    <a href="#" className={styles.a} style={{color: "red", margin:"1rem"}} onClick={deleteProfile}>Delete profile</a>
+            <div className="customContainer">
+                <div className={styles.profileCard} style={{width: "30rem"}}>
+                    <div align="center" className="pb_1">
+                        <img style={{width: "50%", marginTop: "2rem"}} src={profilePicture}
+                             alt={"profile picture"} className={styles.profileImg}/>
+                    </div>
+                    <div className="card-body">
+                        <h1>{firstName.charAt(0).toUpperCase() + firstName.slice(1)} {lastName.charAt(0).toUpperCase() + lastName.slice(1)}</h1>
+                        <p>{username}</p>
+                    </div>
+                    <div className={styles.profileCard__body}>
+                        <ul className="list-group list-group-flush">
+                            <h5>{profile.height} cm</h5>
+                            <h5>{profile.weight} kg</h5>
+                            <h5>BMI {Math.round(profile.bmi * 10) / 10}</h5>
+                        </ul>
+                    </div>
+                    <div className={styles.profileCard__body}>
+                        <a href="#" className={styles.a} style={{margin: "1rem"}} onClick={onEditClick}>Edit</a>
+                        <a href="#" className={styles.a} style={{color: "red", margin: "1rem"}} onClick={deleteProfile}>Delete
+                            profile</a>
+                    </div>
                 </div>
             </div>
         </>
