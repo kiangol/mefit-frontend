@@ -3,7 +3,8 @@ import {loginAttemptAction} from "../../store/actions/loginActions";
 import {useDispatch} from "react-redux";
 import {registerAttemptAction} from "../../store/actions/registerActions";
 import KeycloakService from "../../services/KeycloakService";
-import logo from "../../images/mefit_orange.svg";
+import logo from "../../images/mefit_with_text.svg";
+import styles from "./Login.module.css"
 
 const LoginForm = ({onRegisterNewUserClick}) => {
 
@@ -30,7 +31,7 @@ const LoginForm = ({onRegisterNewUserClick}) => {
     return (
         <>
             <div align="center">
-            <img src={logo} alt="mefit" style={{width: "34rem", marginRight: "10rem"}}/>
+            <img className={styles.logoWithText} src={logo} alt="mefit" style={{width: "34rem", marginRight: "10rem"}}/>
             </div>
             <div className={"login-root"}>
 

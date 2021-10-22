@@ -22,7 +22,7 @@ const Header = () => {
     const history = useHistory();
 
     const goToProfile = () => {
-        history.push("/profile"); // history.push("/profiles" + id)
+        history.push("/profile");
     };
 
     return (
