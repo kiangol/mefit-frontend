@@ -21,7 +21,11 @@ const Dashboard = () => {
     const categories = new Set();
     const programGroupedByCategory = new Map();
 
-    const [difficulty, setDifficulty] = useState()
+    const [difficulty, setDifficulty] = useState({
+        beginner: [],
+        intermediate: [],
+        difficult: []
+    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -68,7 +72,7 @@ const Dashboard = () => {
                 }
             </select>
             <section>
-                <h1>Programs</h1>
+                <h1>Suggested programs</h1>
                 {currentPrograms && (
                     <ProgramList programList={currentPrograms}/>
                 )}

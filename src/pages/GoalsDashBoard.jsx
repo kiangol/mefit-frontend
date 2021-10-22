@@ -41,19 +41,6 @@ const GoalsDashBoard = () => {
                     console.log(error)
                     setError(error)
                 }
-/*              for listing goals
-                for (let goal of data) {
-                    workoutTypes.add(workout.type)
-                    if (workoutGroupedByType.has(workout.type)){
-                        workoutGroupedByType.get(workout.type).push(workout);
-                    } else {
-                        workoutGroupedByType.set(workout.type, [workout])
-                    }
-                }
-                workoutGroupedByType.set("Show all", data)
-
-                setWorkoutTypeMap(workoutGroupedByType)
-                setWorkoutMap(workoutTypes);*/
             }
         };
         fetchData();
