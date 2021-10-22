@@ -11,5 +11,5 @@ export const list = async () => {
 }
 
 export default {
-    list
+    list,
 };
