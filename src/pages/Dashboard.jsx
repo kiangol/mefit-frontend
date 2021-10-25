@@ -69,23 +69,6 @@ const Dashboard = () => {
                 console.log(error)
             } else {
                     setUserId(data)
-                try {
-                    setuserBMI(userId.bmi.valueOf())
-                    if (userBMI > 24){
-                        setBmiHigh(true)
-                        console.log(programs.name.valueOf())
-                        for (const program in programs) {
-                        /*    console.log("ert")
-                            console.log(program.toString())
-                            console.log(program.name.valueOf())
-                        */}
-                    } else {
-                        setBmiNormal(true)
-                    }
-                } catch (error) {
-                    setError(error)
-                    console.log(error)
-                }
             }
         }
         fetchData();
