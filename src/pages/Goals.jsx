@@ -25,7 +25,7 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                if(data.goal) {
+                if(data) {
                     setCurrentGoal(data.goal);
                     setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
                 }
@@ -47,6 +47,10 @@ const Goals = () => {
 
     return (
         <>
+            {(currentGoal && !goalInThisWeek) &&
+            <StatusForOneGoal goal={currentGoal}/>
+            }
+
             {!goalInThisWeek &&
             <NoGoalForWeek/>
             }
@@ -55,9 +59,7 @@ const Goals = () => {
             <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
             }
 
-            {(currentGoal && !goalInThisWeek) &&
-            <StatusForOneGoal goal={currentGoal}/>
-            }
+
         </>
     )
 }
