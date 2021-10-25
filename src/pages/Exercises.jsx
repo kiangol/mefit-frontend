@@ -50,7 +50,6 @@ const Exercises = () => {
 
 
     const handleMuscleGroupSelect = event => {
-        console.log(muscleGroupMap1.get("Show all"));
         setCurrentExercises(muscleGroupMap1.get(event.target.value));
     };
 

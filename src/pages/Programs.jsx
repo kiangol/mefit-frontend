@@ -23,6 +23,7 @@ const Programs = () => {
             } else {
                 setPrograms(data);
                 setCurrentPrograms(data);
+                console.log(data);
                 for (let program of data) {
                     categories.add(program.category)
                     if (programGroupedByCategory.has(program.category)){

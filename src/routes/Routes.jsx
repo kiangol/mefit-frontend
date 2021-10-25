@@ -14,6 +14,7 @@ import ProfilePage from "../pages/ProfilePage";
 import Contributors from "../pages/Contributors";
 import Goals from "../pages/Goals";
 import EditProfile from "../pages/EditProfile";
+import ProfileQuestionnaire from "../components/Profile/ProfileQuestionnaire";
 
 // Might redirect "/" to "/login" and have "/" as dashboard.
 const Routes = () => {
@@ -36,6 +37,7 @@ const Routes = () => {
                     <Route exact path={"/workouts"} component={Workouts}/>
                     <Route exact path={"/profile"} component={ProfilePage}/>
                     <Route exact path={"/profile/edit"} component={EditProfile}/>
+                    <Route exact path={"/profile/questionnaire"} component={ProfileQuestionnaire}/>
                     <Route exact path={"/contributor"} component={Contributors}/>
                     <Route path={"*"} component={NotFound}/>
                 </Switch>

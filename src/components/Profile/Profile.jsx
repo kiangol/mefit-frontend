@@ -41,6 +41,7 @@ const Profile = ({profile}) => {
                     </div>
                     <div className={styles.profileCard__body}>
                         <ul className="list-group list-group-flush">
+                            <h5>Fitness level: {profile.fitnessScore}</h5>
                             <h5>{profile.height} cm</h5>
                             <h5>{profile.weight} kg</h5>
                             <h5>BMI {Math.round(profile.bmi * 10) / 10}</h5>
