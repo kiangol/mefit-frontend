@@ -96,7 +96,6 @@ const Goals = () => {
 
     return (
         <>
-            <NoGoalForWeek profile={profile} />
 
             <div className="calendar">
                 <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
