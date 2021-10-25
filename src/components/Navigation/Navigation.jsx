@@ -7,11 +7,11 @@ import logo from '../../images/mefit_notext.svg'
 const Navigation = () => {
     const history = useHistory();
     const loggedIn = KeycloakService.isLoggedIn()
+    const contributor = KeycloakService.hasRole(["contributor"])
 
     const onLogoClick = () => {
         history.push("/")
     }
-
 
     return (
         <>
@@ -47,9 +47,11 @@ const Navigation = () => {
                     <NavLink exact to={"/goals"} activeClassName={styles.active} className={styles.navItem}>
                         Goals
                     </NavLink>
+                    {contributor &&
                     <NavLink exact to={"/contributor"} activeClassName={styles.active} className={styles.navItem}>
                         Contributor
                     </NavLink>
+                    }
                 </>
                 }
             </nav>

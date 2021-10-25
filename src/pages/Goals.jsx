@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list, listOne} from "../api/ProfileAPI";
+import styles from "../components/Goal/Goals.module.css"
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
@@ -96,23 +97,23 @@ const Goals = () => {
 
     return (
         <>
+            <section className={styles.GoalContainer}>
+                <div className="calendar">
+                    <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
+                </div>
 
-            <div className="calendar">
-                <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
-            </div>
+                {currentGoal &&
+                <StatusForOneGoal  goal={currentGoal}/>
+                }
 
-            {currentGoal &&
-            <StatusForOneGoal goal={currentGoal}/>
-            }
+                {(goalInThisWeek || !currentGoal) &&
+                <NoGoalForWeek profile={profile}/>
+                }
 
-            {goalInThisWeek &&
-            <NoGoalForWeek profile={profile}/>
-            }
-
-            {(currentGoal && goalInThisWeek) &&
-            <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
-            }
-
+                {(currentGoal && goalInThisWeek) &&
+                <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
+                }
+            </section>
         </>
     )
 }

@@ -1,22 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {markGoalCompleted} from "../../api/GoalAPI";
+import styles from "../Goal/StatusForOneGoal.module.css"
 
 const StatusForOneGoal = ({goal}) => {
 
-    const [ workouts, setWorkouts ] = useState({
+    const [workouts, setWorkouts] = useState({
         pending: [],
         completed: []
     })
     const [allWorkouts] = useState([...goal.workouts]);
 
-    const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
+    const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth() + 1) + "/" + new Date(goal.endDate).getFullYear()
 
 
     useEffect(() => {
         const calculateStatus = () => {
-            const [ completed, pending ] = sortWorkouts(goal.workouts)
-            setWorkouts({ completed, pending })
+            const [completed, pending] = sortWorkouts(goal.workouts)
+            setWorkouts({completed, pending})
         };
         calculateStatus();
     }, [])
@@ -40,8 +41,8 @@ const StatusForOneGoal = ({goal}) => {
                 break;
             }
         }
-        const [ completed, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.completed])
-        setWorkouts({ completed, pending })
+        const [completed, pending] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.completed])
+        setWorkouts({completed, pending})
         await markGoalCompleted(goal.id, workoutToCompleted)
         window.location.reload("false");
     }
@@ -49,24 +50,31 @@ const StatusForOneGoal = ({goal}) => {
 
     return (
         <>
-            <h2>Current goal end date: {date}</h2>
-            <h2>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h2>
-            <h2>Pending workouts: </h2>
-            {workouts.pending.map((workout) => (
-                    <>
-                        <h4 key={workout.workout.id}>{workout.workout.name}</h4>
-                        <button onClick={() => handleCompletedWorkoutClick(workout)}>Completed</button>
-                    </>
-                )
-            )}
+            <section className={styles.Status}>
+                <h3>Current goal end date: {date}</h3>
+                <h3>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h3>
+                <section className={styles.PendingCompletedArea}>
+                    <div className={styles.List}>
+                        <h4>Pending workouts: </h4>
+                        {workouts.pending.map((workout) => (
+                                <div className={styles.PendingListItem}>
+                                    <h5 key={workout.workout.id}>{workout.workout.name}</h5>
+                                    <button className={styles.CompleteButton} onClick={() => handleCompletedWorkoutClick(workout)}>Complete Workout</button>
+                                </div>
+                            )
+                        )}
+                    </div>
+                    <div className={styles.List}>
+                        <h4>Completed workouts: </h4>
+                        {workouts.completed.map((workout) => (
 
-            <h2>Completed workouts: </h2>
-            {workouts.completed.map((workout) => (
-                    <>
-                        <h4 key={workout.workout.id}>{workout.workout.name}</h4>
-                    </>
-                )
-            )}
+                                <h5 key={workout.workout.id}>{workout.workout.name}</h5>
+
+                            )
+                        )}
+                    </div>
+                </section>
+            </section>
         </>
     )
 }
