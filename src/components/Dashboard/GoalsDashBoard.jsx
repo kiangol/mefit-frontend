@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import withKeycloak from "../hoc/withKeycloak";
+import withKeycloak from "../../hoc/withKeycloak";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import {listOne} from "../api/ProfileAPI";
-import KeycloakService from "../services/KeycloakService";
+import {listOne} from "../../api/ProfileAPI";
+import KeycloakService from "../../services/KeycloakService";
+import StatusForOneGoal from "../Goal/StatusForOneGoal";
+import {useHistory} from "react-router-dom";
 
 
 var counter = 1;
 const loggedIn = KeycloakService.isLoggedIn()
-let hasGoal = false
 
-const GoalsDashBoard = () => {
+const GoalsDashBoard = ({userGoal}) => {
     // set states of calendar date
     const [goalDate, setGoalDate] = useState(new Date())
     const [calDate, setCalDate] = useState(new Date())
-    const [userGoal, setUserGoal] = useState()
-
+    //const [userGoal, setUserGoal] = useState()
+    const history = useHistory()
     const [error, setError] = useState()
     const [userId, setUserId] = useState()
     const [dateString, setDateString] = useState({
@@ -25,8 +26,10 @@ const GoalsDashBoard = () => {
         username: KeycloakService.getUsername()
     });
 
-    useEffect(() => {
-        const fetchData = async () => {
+    let hasGoal = true
+
+    /*useEffect(() => {
+        const fetchProfile = async () => {
             const {data, error} = await listOne(username.username);
             if (error) {
                 console.log(error);
@@ -34,32 +37,15 @@ const GoalsDashBoard = () => {
                 console.log(error);
             } else {
                 setUserId(data);
-                try {
-                    setUserGoal(data.goal)
-                    hasGoal = true
-                } catch (error) {
-                    console.log(error)
-                    setError(error)
-                }
-
-/*                // for listing goals
-                for (let goal of data) {
-                    workoutTypes.add(workout.type)
-                    if (workoutGroupedByType.has(workout.type)) {
-                        workoutGroupedByType.get(workout.type).push(workout);
-                    } else {
-                        workoutGroupedByType.set(workout.type, [workout])
-                    }
-                }
-                workoutGroupedByType.set("Show all", data)
-
-                setWorkoutTypeMap(workoutGroupedByType)
-                setWorkoutMap(workoutTypes);*/
+                setUserGoal(data.goal)
+                console.log(data)
             }
         };
-        fetchData();
-    }, []);
 
+
+        fetchProfile();
+    }, []);
+*/
     const onDateChange = event => {
         setDateString({
             ...dateString,
@@ -67,10 +53,8 @@ const GoalsDashBoard = () => {
         })
     }
 
-    function addelement() {
-        var completelist = document.getElementById("goalList");
-        completelist.innerHTML += "<li>Goal " + counter + ": deadline: " + goalDate.getDate() + " " + getMonth(goalDate.getMonth()) + "</li>";
-        counter++;
+    function onSetGoalClick() {
+        history.push("/goals")
     }
 
     function getMonth(monthInt) {
@@ -117,6 +101,14 @@ const GoalsDashBoard = () => {
         return newResultFormat === newCalDateFormat
     }
 
+    /*
+                                {userGoal && <>
+                                    <h2>Your goals</h2>
+                                    <p>{userGoal.id} {userGoal.program.name}</p>
+                                </>
+                                }
+                                {!userGoal && <> <p>You have no Goals</p></>}*/
+
 
     return (
         <>
@@ -125,22 +117,21 @@ const GoalsDashBoard = () => {
                     <article className="col">
                         <div className="card-body">
                             <div className="calendar">
-                                <Calendar id={"endDate"} onChange={onChange} value={calDate}/>
+                                <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange}
+                                          value={calDate}/>
                             </div>
                         </div>
                     </article>
                     <article className="col">
                         <div className="card-body">
                             <h2>Goals</h2>
-                            <button onClick={addelement} value={goalDate}>Set Goal</button>
+                            <button onClick={onSetGoalClick}>Set Goal</button>
                             <br/><br/>
                             <ul id="goalList">
-                                {hasGoal && <>
-                                    <h2>Your goals</h2>
-                                    <p>{userGoal}</p>
-                                </>
+                                {userGoal &&
+                                <StatusForOneGoal goal={userGoal}/>
                                 }
-                                {!hasGoal && <> <p>You have no Goals</p></>}
+
                             </ul>
                         </div>
                     </article>
