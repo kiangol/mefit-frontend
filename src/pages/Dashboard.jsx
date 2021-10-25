@@ -1,19 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
-import styled from "styled-components";
 import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
 
 const Dashboard = () => {
-    const Container = styled.div`
-      display: flex;
-      justify-content: center;
-      //align-items: center;
-      //height: 100vh;
-    `;
 
     const [userId, setUserId] = useState()
     const [programs, setPrograms] = useState();

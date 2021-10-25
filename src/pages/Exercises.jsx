@@ -3,17 +3,11 @@ import React, {useEffect, useState} from 'react';
 import {list} from "../api/ExerciseAPI";
 import ExerciseList from "../components/Exercise/ExerciseList";
 import withKeycloak from "../hoc/withKeycloak";
-import styled from 'styled-components';
+import styles from "../hoc/Container.module.css"
 import {Modal} from '../components/Modal/Modal';
 
 
 const Exercises = () => {
-    const Container = styled.div`
-      display: flex;
-      justify-content: center;
-      //align-items: center;
-      //height: 100vh;
-    `;
 
     const [exercises, setExercises] = useState();
     const [currentExercises, setCurrentExercises] = useState();
@@ -78,12 +72,12 @@ const Exercises = () => {
                     )
                     }
                 </select>
-                <Container>
+                <section className={styles.Container}>
                     {currentExercises && (
                         <ExerciseList list={currentExercises} clicker={openModal}/>
                     )}
                     <Modal showModal={showModal} setShowModal={setShowModal} exercise={clickedExercise}/>
-                </Container>
+                </section>
 
             </main>
 

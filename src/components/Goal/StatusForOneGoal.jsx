@@ -8,7 +8,7 @@ const StatusForOneGoal = ({goal}) => {
         pending: [],
         completed: []
     })
-    const [allWorkouts, setAllWorkouts] = useState([...goal.workouts]);
+    const [allWorkouts] = useState([...goal.workouts]);
 
     const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
 
@@ -43,6 +43,7 @@ const StatusForOneGoal = ({goal}) => {
         const [ completed, pending ] = sortWorkouts([...localWorkouts.pending, ...localWorkouts.completed])
         setWorkouts({ completed, pending })
         await markGoalCompleted(goal.id, workoutToCompleted)
+        window.location.reload("false");
     }
 
 
