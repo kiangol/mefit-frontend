@@ -2,15 +2,9 @@ import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/ProgramAPI";
 import {createGoal, updateGoal, updateWorkoutInGoal} from "../../api/GoalAPI";
-import {useHistory} from "react-router-dom";
-import KeycloakService from "../../services/KeycloakService";
-import {listOne} from "../../api/ProfileAPI";
-import {updateWorkout} from "../../api/WorkoutAPI";
 
-const NoGoalForWeek = () => {
+const NoGoalForWeek = ({profile}) => {
 
-    const history = useHistory();
-    const [profile, setProfile] = useState();
     const [programs, setPrograms] = useState();
     const [workouts, setWorkouts] = useState();
     const [exercises, setExercises] = useState();
@@ -20,19 +14,8 @@ const NoGoalForWeek = () => {
         program: "",
         workouts: []
     })
-    const [username] = useState({
-        username: KeycloakService.getUsername()
-    })
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            const {data, error} = await listOne(username.username);
-            if (error) {
-                console.log("error " + error)
-            } else {
-                setProfile(data);
-            }
-        }
         const fetchPrograms = async () => {
             const {data, error} = await list();
             if (error) {
@@ -42,7 +25,6 @@ const NoGoalForWeek = () => {
             }
         };
         fetchPrograms();
-        fetchProfile();
     }, [])
 
     const listProgramWorkoutsIds = (workouts) => {
@@ -55,7 +37,8 @@ const NoGoalForWeek = () => {
 
     const handleSetProgramAsGoalClick = async program => {
         const newGoal = {...goal}
-        newGoal.endDate = new Date();
+        const date = new Date()
+        newGoal.endDate = date.setDate(date.getDate() + 6);
         newGoal.program = program.id;
         const createdGoal = await createGoal(newGoal);
         newGoal.workouts = listProgramWorkoutsIds(program.workouts);
@@ -63,11 +46,8 @@ const NoGoalForWeek = () => {
 
         if (createdGoal) {
             await updateGoal(profile.id, createdGoal.data.id);
+            window.location.reload("false");
         }
-    }
-
-    const goToGoalsPage = () => {
-        history.push("/goals");
     }
 
     return (

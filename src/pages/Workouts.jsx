@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/WorkoutAPI";
-import styled from "styled-components";
 import WorkoutList from "../components/Workout/WorkoutList";
 import {Modal} from "../components/Modal/Modal";
 
@@ -19,13 +18,6 @@ const Workouts = () => {
     const workoutTypes = new Set();
     const workoutGroupedByType = new Map();
     const history = useHistory();
-
-    const Container = styled.div`
-      display: flex;
-      justify-content: center;
-      //align-items: center;
-      //height: 100vh;
-    `;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -90,11 +82,7 @@ const Workouts = () => {
                             <WorkoutList list={currentWorkouts} exerciseClicked={openModal}/>
                         )}
                 </section>
-                <section>
-
-                </section>
             </main>
-
         </>
     );
 }

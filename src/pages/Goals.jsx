@@ -4,9 +4,7 @@ import {list, listOne} from "../api/ProfileAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
-import CreateCustomProgram from "../components/Goal/CustomWorkout";
 import AddCustomWorkouts from "../components/Goal/CustomWorkout";
-import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
 import Calendar from "react-calendar";
 
 
@@ -31,9 +29,11 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                if(data) {
+                if (data) {
                     setCurrentGoal(data.goal);
-                    setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
+                    if (data.goal) {
+                        setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
+                    }
                 }
             }
         };
@@ -96,18 +96,21 @@ const Goals = () => {
 
     return (
         <>
+            <NoGoalForWeek profile={profile} />
 
             <div className="calendar">
                 <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
             </div>
-            {(currentGoal && !goalInThisWeek) &&
-            <StatusForOneGoal goal={currentGoal}/>
-            }
-            {goalInThisWeek &&
-            <NoGoalForWeek/>
-            }
 
             {currentGoal &&
+            <StatusForOneGoal goal={currentGoal}/>
+            }
+
+            {goalInThisWeek &&
+            <NoGoalForWeek profile={profile}/>
+            }
+
+            {(currentGoal && goalInThisWeek) &&
             <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
             }
 
