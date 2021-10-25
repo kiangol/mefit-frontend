@@ -6,6 +6,8 @@ import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
 import CreateCustomProgram from "../components/Goal/CustomWorkout";
 import AddCustomWorkouts from "../components/Goal/CustomWorkout";
+import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
+import Calendar from "react-calendar";
 
 
 const Goals = () => {
@@ -13,6 +15,10 @@ const Goals = () => {
     const [currentGoal, setCurrentGoal] = useState();
     const [goalInThisWeek, setGoalInThisWeek] = useState();
     const [profile, setProfile] = useState();
+
+    const [goalDate, setGoalDate] = useState(new Date())
+    const [calDate, setCalDate] = useState(new Date())
+
     const [username] = useState({
         username: KeycloakService.getUsername()
     });
@@ -25,7 +31,7 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                if(data.goal) {
+                if (data.goal) {
                     setCurrentGoal(data.goal);
                     setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
                 }
@@ -45,9 +51,59 @@ const Goals = () => {
         return dateOfGoal <= week;
     }
 
+    function onChange(clickedDate) {
+        // change results based on calendar date click
+        setCalDate(calDate)
+
+        const newResultFormat = new Date().toLocaleString().split(",")[0]
+        const newCalDateFormat = clickedDate.toLocaleString().split(",")[0]
+        setGoalDate(new Date(clickedDate))
+
+        console.log(new Date(clickedDate).getDay())
+        return newResultFormat === newCalDateFormat
+    }
+
+    function getMonth(monthInt) {
+        switch (monthInt) {
+            case 0:
+                return "Jan"
+            case 1:
+                return "Feb"
+            case 2:
+                return "Mar"
+            case 3:
+                return "Apr"
+            case 4:
+                return "May"
+            case 5:
+                return "Jun"
+            case 6:
+                return "Jul"
+            case 7:
+                return "Aug"
+            case 8:
+                return "Sep"
+            case 9:
+                return "Oct"
+            case 10:
+                return "Nov"
+            case 11:
+                return "Dec"
+            default:
+                return "Unknown Month int"
+        }
+    }
+
     return (
         <>
-            {!goalInThisWeek &&
+
+            <div className="calendar">
+                <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
+            </div>
+            {(currentGoal && !goalInThisWeek) &&
+            <StatusForOneGoal goal={currentGoal}/>
+            }
+            {goalInThisWeek &&
             <NoGoalForWeek/>
             }
 
@@ -55,9 +111,6 @@ const Goals = () => {
             <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
             }
 
-            {(currentGoal && !goalInThisWeek) &&
-            <StatusForOneGoal goal={currentGoal}/>
-            }
         </>
     )
 }
