@@ -48,9 +48,8 @@ const Profile = ({profile}) => {
                         </ul>
                     </div>
                     <div className={styles.profileCard__body}>
-                        <button className={styles.a} style={{margin: "1rem"}} onClick={onEditClick}>Edit</button>
-                        <button className={styles.a} style={{color: "red", margin: "1rem"}} onClick={deleteProfile}>Delete
-                            profile</button>
+                        <button className={styles.a} style={{color: "black", margin: "0.5rem"}} onClick={onEditClick}>Edit</button>
+                        <button className={styles.a} style={{color: "red", margin: "0.5rem"}} onClick={deleteProfile}>Delete profile</button>
                     </div>
                 </div>
             </div>
