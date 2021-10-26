@@ -1,0 +1,24 @@
+.NoGoalsArea {
+    background-color: var(--card-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1.4rem 1.4rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.ProgramCard {
+    border-radius: 8px;
+    border: 2px solid #fca311;
+    margin: 0.8rem;
+    padding: 0.9rem;
+}
+
+.ProgramCard button {
+    padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+}
+
+.ProgramCard button:hover {
+   transform: scale(1.03);
+}
