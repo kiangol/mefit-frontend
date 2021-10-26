@@ -6,6 +6,7 @@ import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
+import {useHistory} from "react-router-dom";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -14,7 +15,7 @@ const Dashboard = () => {
       //align-items: center;
       //height: 100vh;
     `;
-
+    const history = useHistory()
     const [userId, setUserId] = useState()
     const [programs, setPrograms] = useState();
     const [currentPrograms, setCurrentPrograms] = useState()
@@ -28,8 +29,10 @@ const Dashboard = () => {
     const [bmiNormal, setBmiNormal] = useState()
     const [userBMI, setuserBMI] = useState()
 
-    const [username] = useState({
-        username: KeycloakService.getUsername()
+    const [username, firstname] = useState({
+        username: KeycloakService.getUsername(),
+        firstname: KeycloakService.getFirstName(),
+        lastname: KeycloakService.getLastName()
     });
 
     useEffect(() => {
@@ -80,12 +83,25 @@ const Dashboard = () => {
         setCurrentPrograms(categoryMap.get(event.target.value))
     }
 
+    function goToProfileClick(){
+        history.push("/profile")
+    }
+
     return (
         <>
-        <h1>Dashboard</h1>
-            {userId &&
-            <GoalsDashBoard userGoal={userId.goal}/>
+            {!userId &&
+                <>
+                    <h2>Welcome to MeFit {username.firstname} {username.lastname}!</h2>
+                    <br/>
+                    <p>To get started with MeFit go to profile and setup your profile!</p>
+                    <button onClick={goToProfileClick}>Create Profile</button>
+                    <br/>
+                    <br/>
+                    <br/>
+                </>
             }
+            {userId && <>
+            <GoalsDashBoard userGoal={userId.goal}/>
             <select onChange={handleCategorySelect}>
                 <option key={"0"} value={"Show all"}>Show all</option>
                 {programMap &&
@@ -101,9 +117,9 @@ const Dashboard = () => {
                     <ProgramList programList={currentPrograms}/>
                 )}
             </section>
-            <section>
+            </>
+            }
 
-            </section>
         </>
     )
 }
