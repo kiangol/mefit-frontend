@@ -1,0 +1,53 @@
+.Form {
+    background-color: var(--card-color);
+    margin-top: 2rem;
+    border-radius: 8px;
+    padding: 1.4rem 1.4rem;
+}
+
+.NameInput {
+
+}
+
+.SelectInput {
+
+}
+
+.GridForCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    list-style-type: none;
+    padding: 0.5rem;
+
+}
+
+.CardForExercises {
+    border: 3px solid darkslategray;
+    margin: 0.7rem;
+}
+
+.CardName {
+
+}
+
+.InputFields {
+    display: flex;
+    justify-content: space-between;
+}
+
+.InputFields input {
+    width: 8rem;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.AddNewButton {
+    width: 8rem;
+}
+.ButtonArea {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}

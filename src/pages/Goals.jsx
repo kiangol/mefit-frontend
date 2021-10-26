@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list, listOne} from "../api/ProfileAPI";
+import styles from "../components/Goal/Goals.module.css"
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
@@ -31,7 +32,9 @@ const Goals = () => {
                 setProfile(data);
                 if (data) {
                     setCurrentGoal(data.goal);
-                    setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
+                    if (data.goal) {
+                        setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
+                    }
                 }
             }
         };
@@ -40,7 +43,6 @@ const Goals = () => {
 
 
     const isGoalThisWeek = (date) => {
-
         const dateOfGoal = new Date(date);
         const dateObj = new Date();
         const today = dateObj;
@@ -94,21 +96,27 @@ const Goals = () => {
 
     return (
         <>
+            <section className={styles.GoalContainer}>
+                <div className="calendar">
+                    <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
+                </div>
 
-            <div className="calendar">
-                <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
-            </div>
-            {(currentGoal && !goalInThisWeek) &&
-            <StatusForOneGoal goal={currentGoal}/>
-            }
-            {goalInThisWeek &&
-            <NoGoalForWeek/>
-            }
+                {!currentGoal &&
+                <NoGoalForWeek />
+                }
 
-            {currentGoal &&
-            <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
-            }
+                {currentGoal &&
+                <StatusForOneGoal  goal={currentGoal}/>
+                }
 
+                {(goalInThisWeek || !currentGoal) &&
+                <NoGoalForWeek profile={profile}/>
+                }
+
+                {currentGoal &&
+                <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
+                }
+            </section>
         </>
     )
 }
