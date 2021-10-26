@@ -75,3 +75,16 @@
     background: white;
     font-size: 20px;
 }
+
+.date .countdown {
+    display: block;
+    margin: 0;
+    width: 50%;
+    height: 20%;
+    background: white;
+    padding: 10px 0;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 0 3px #ccc;
+    position: relative;
+}
