@@ -6,6 +6,8 @@ import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
+import {Button} from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -31,6 +33,21 @@ const Dashboard = () => {
     const [username] = useState({
         username: KeycloakService.getUsername()
     });
+
+    const [profile, setProfile] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data, error} = await listOne(username.username);
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(data);
+                setProfile(data);
+            }
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
 
@@ -80,9 +97,16 @@ const Dashboard = () => {
         setCurrentPrograms(categoryMap.get(event.target.value))
     }
 
+    const history = useHistory();
+
+    const onProfileClick = () => {
+        history.push("/profile");
+    };
+
     return (
         <>
         <h1>Dashboard</h1>
+
             {userId &&
             <GoalsDashBoard userGoal={userId.goal}/>
             }
@@ -102,7 +126,12 @@ const Dashboard = () => {
                 )}
             </section>
             <section>
-
+                {!profile &&
+                    <>
+                <h2>Create a profile for more stuff here!</h2>
+                        <Button className={"btn btn-warning btn-lg"} onClick={onProfileClick}>Go to profile page</Button>
+                    </>
+                }
             </section>
         </>
     )
