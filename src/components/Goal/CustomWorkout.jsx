@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/ExerciseAPI";
-import {updateGoal, updateWorkoutInGoal} from "../../api/GoalAPI";
+import styles from "../Goal/CustomWorkout.module.css"
 import KeycloakService from "../../services/KeycloakService";
 import {listOne} from "../../api/ProfileAPI";
 import {create} from "../../api/WorkoutAPI";
@@ -85,7 +85,7 @@ const CustomWorkout = ({preWorkouts}) => {
 
     const putExerciseDetailsTogether = (exercise) => {
         const localSet = {...customSets}
-        localSet.exercise = exercise
+        localSet.exercise = exercise.id
         return localSet;
     }
 
@@ -97,10 +97,10 @@ const CustomWorkout = ({preWorkouts}) => {
     }
 
     const handleOnExerciseSetsChange = event => {
-       setCustomSets({
-           ...customSets,
-        [event.target.id]: event.target.value
-       })
+        setCustomSets({
+            ...customSets,
+            [event.target.id]: event.target.value
+        })
     }
 
     const handleCreateCustomWorkout = async (event) => {
@@ -108,14 +108,17 @@ const CustomWorkout = ({preWorkouts}) => {
         let localCustomWorkout = {...customWorkout}
         localCustomWorkout.sets = listOfExercises
         const createdCustomWorkout = create(localCustomWorkout)
-        setAllWorkouts( [...allWorkouts, createdCustomWorkout]);
-        await updateWorkoutInGoal(profile.goal.id, allWorkouts)
+        setAllWorkouts([...allWorkouts, createdCustomWorkout]);
+        console.log("LocalCustomWorkout" + JSON.stringify(localCustomWorkout))
+        console.log("CreatedCustomWorkout" + JSON.stringify(createdCustomWorkout))
+        console.log("SetAllWorkouts" + JSON.stringify(allWorkouts))
+        //await updateWorkoutInGoal(profile.goal.id, allWorkouts)
     }
     return (
         <>
-            <h1>Add Workouts to Goal</h1>
-            <form onSubmit={handleCreateCustomWorkout}>
-                <div>
+
+            <form className={styles.Form} onSubmit={handleCreateCustomWorkout}>
+                <div className={styles.NameInput}>
                     <label>Name your custom program</label>
                     <input type={"text"}
                            required
@@ -124,7 +127,7 @@ const CustomWorkout = ({preWorkouts}) => {
                            onChange={handleOnCustomWorkoutChange}
                     />
                 </div>
-                <div>
+                <div className={styles.SelectInput}>
                     <label>Select a category</label>
                     <select
                         id={"type"}
@@ -138,30 +141,39 @@ const CustomWorkout = ({preWorkouts}) => {
                     </select>
                 </div>
 
-                <div>
+                <div className={styles.GridForCards}>
                     {exercises &&
                     exercises.map((exercise) => (
-                        <>
-                            <h1 key={exercise.id}>{exercise.name}</h1>
-                            <label>Repetitions</label>
-                            <input type={"number"}
+                        <div className={styles.CardForExercises}>
+                            <div className={styles.CardName}>
+                                <h5 key={exercise.id}>{exercise.name}</h5>
+                            </div>
+                            <div className={styles.InputFields}>
+                                <label>Repetitions</label>
+                                <input type={"number"}
 
-                                   placeholder={"Number of repetitions"}
-                                   id={"exerciseRepetitions"}
-                                   min={1}
-                                   max={500}
-                                   onChange={handleOnExerciseSetsChange}
-                            />
-                            <label>Difficutly 1-10</label>
-                            <input type={"number"}
-
-                            placeholder={"Rate difficulty1-10"}
-                            id={"difficulty"}
-                                   min={1}
-                                   max={10}
-                            onChange={handleOnExerciseSetsChange}/>
-                            <button type={"button"} onClick={() => handleSelectingExercises(exercise)}>Add</button>
-                        </>
+                                       placeholder={"Number of repetitions"}
+                                       id={"exerciseRepetitions"}
+                                       min={1}
+                                       max={500}
+                                       onChange={handleOnExerciseSetsChange}
+                                />
+                            </div>
+                            <div className={styles.InputFields}>
+                                <label>Difficutly 1-10</label>
+                                <input type={"number"}
+                                       placeholder={"Rate difficulty1-10"}
+                                       id={"difficulty"}
+                                       min={1}
+                                       max={10}
+                                       onChange={handleOnExerciseSetsChange}/>
+                            </div>
+                            <div className={styles.ButtonArea}>
+                                <button className={styles.AddNewButton} type={"button"}
+                                        onClick={() => handleSelectingExercises(exercise)}>Add
+                                </button>
+                            </div>
+                        </div>
                     ))}
                 </div>
 

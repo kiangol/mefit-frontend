@@ -102,6 +102,10 @@ const Goals = () => {
                     <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
                 </div>
 
+                {!currentGoal &&
+                <NoGoalForWeek />
+                }
+
                 {currentGoal &&
                 <StatusForOneGoal  goal={currentGoal}/>
                 }
@@ -110,7 +114,7 @@ const Goals = () => {
                 <NoGoalForWeek profile={profile}/>
                 }
 
-                {(currentGoal && goalInThisWeek) &&
+                {currentGoal &&
                 <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
                 }
             </section>

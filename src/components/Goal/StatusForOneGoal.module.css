@@ -1,8 +1,9 @@
 .Status {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     background-color: var(--card-color);
     border-radius: 8px;
-    padding: 1rem 1rem;
+    padding: 1.4rem 1.4rem;
 }
 
 .StatusTitleText {
