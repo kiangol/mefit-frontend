@@ -31,9 +31,7 @@ const Goals = () => {
                 setProfile(data);
                 if (data) {
                     setCurrentGoal(data.goal);
-                    if (data.goal) {
-                        setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
-                    }
+                    setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
                 }
             }
         };
@@ -100,16 +98,14 @@ const Goals = () => {
             <div className="calendar">
                 <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
             </div>
-
-            {currentGoal &&
+            {(currentGoal && !goalInThisWeek) &&
             <StatusForOneGoal goal={currentGoal}/>
             }
-
             {goalInThisWeek &&
-            <NoGoalForWeek profile={profile}/>
+            <NoGoalForWeek/>
             }
 
-            {(currentGoal && goalInThisWeek) &&
+            {currentGoal &&
             <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
             }
 

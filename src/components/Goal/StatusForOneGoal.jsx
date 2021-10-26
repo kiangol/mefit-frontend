@@ -12,7 +12,6 @@ const StatusForOneGoal = ({goal}) => {
 
     const date = new Date(goal.endDate).getDate() + "/" + (new Date(goal.endDate).getMonth()+1) + "/" + new Date(goal.endDate).getFullYear()
 
-
     useEffect(() => {
         const calculateStatus = () => {
             const [ completed, pending ] = sortWorkouts(goal.workouts)
