@@ -1,5 +1,12 @@
 .Status {
-    border: 1px solid yellow;
+    margin-top: 2rem;
+    background-color: var(--card-color);
+    border-radius: 8px;
+    padding: 1rem 1rem;
+}
+
+.StatusTitleText {
+    text-align: center;
 }
 
 .PendingCompletedArea {

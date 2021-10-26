@@ -51,15 +51,19 @@ const StatusForOneGoal = ({goal}) => {
     return (
         <>
             <section className={styles.Status}>
-                <h3>Current goal end date: {date}</h3>
-                <h3>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h3>
+                <section className={styles.StatusTitleText}>
+                    <h3>Current goal end date: {date}</h3>
+                    <h3>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h3>
+                </section>
                 <section className={styles.PendingCompletedArea}>
                     <div className={styles.List}>
                         <h4>Pending workouts: </h4>
                         {workouts.pending.map((workout) => (
                                 <div className={styles.PendingListItem}>
                                     <h5 key={workout.workout.id}>{workout.workout.name}</h5>
-                                    <button className={styles.CompleteButton} onClick={() => handleCompletedWorkoutClick(workout)}>Complete Workout</button>
+                                    <button className={styles.CompleteButton}
+                                            onClick={() => handleCompletedWorkoutClick(workout)}>Complete Workout
+                                    </button>
                                 </div>
                             )
                         )}
@@ -67,9 +71,9 @@ const StatusForOneGoal = ({goal}) => {
                     <div className={styles.List}>
                         <h4>Completed workouts: </h4>
                         {workouts.completed.map((workout) => (
-
-                                <h5 key={workout.workout.id}>{workout.workout.name}</h5>
-
+                                <>
+                                    <h5 key={workout.workout.id}><span className="material-icons">check</span>{workout.workout.name}</h5>
+                                </>
                             )
                         )}
                     </div>
