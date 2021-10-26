@@ -99,9 +99,6 @@ const Goals = () => {
 
             <section className={styles.GoalContainer}>
                 <h1>Goals</h1>
-                {!currentGoal &&
-                <NoGoalForWeek />
-                }
 
                 {currentGoal &&
                 <StatusForOneGoal  goal={currentGoal}/>

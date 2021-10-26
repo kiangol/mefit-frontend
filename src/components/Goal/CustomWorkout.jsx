@@ -5,6 +5,7 @@ import styles from "../Goal/CustomWorkout.module.css"
 import KeycloakService from "../../services/KeycloakService";
 import {listOne} from "../../api/ProfileAPI";
 import {create} from "../../api/WorkoutAPI";
+import {updateWorkoutInGoal} from "../../api/GoalAPI";
 
 const CustomWorkout = ({preWorkouts}) => {
 
@@ -109,10 +110,7 @@ const CustomWorkout = ({preWorkouts}) => {
         localCustomWorkout.sets = listOfExercises
         const createdCustomWorkout = create(localCustomWorkout)
         setAllWorkouts([...allWorkouts, createdCustomWorkout]);
-        console.log("LocalCustomWorkout" + JSON.stringify(localCustomWorkout))
-        console.log("CreatedCustomWorkout" + JSON.stringify(createdCustomWorkout))
-        console.log("SetAllWorkouts" + JSON.stringify(allWorkouts))
-        //await updateWorkoutInGoal(profile.goal.id, allWorkouts)
+        await updateWorkoutInGoal(profile.goal.id, allWorkouts)
     }
     return (
         <>
@@ -193,7 +191,7 @@ const CustomWorkout = ({preWorkouts}) => {
                         ))}
                     </ul>
                 </div>
-                <button className={styles.CreateWorkoutButton} type={"submit"}>Create Custom Program</button>
+                <button className={styles.CreateWorkoutButton} type={"submit"}>Create Workout</button>
             </form>
         </>
     )
