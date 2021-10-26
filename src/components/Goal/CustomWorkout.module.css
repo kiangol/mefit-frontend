@@ -5,29 +5,67 @@
     padding: 1.4rem 1.4rem;
 }
 
+.Title {
+    text-align: center;
+}
+
+.NameAndTypeArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .NameInput {
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 }
 
 .SelectInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.SelectBox {
+    padding: 0.2rem;
+    width: 10rem;
+}
+
+.CreateWorkoutButton {
+    padding: 0.5rem;
+}
+
+.CreateWorkoutButton:hover {
+    transform: scale(1.03);
 }
 
 .GridForCards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
     padding: 0.5rem;
 
 }
 
 .CardForExercises {
-    border: 3px solid darkslategray;
+    border: 2px solid #fca311;
+    border-radius: 8px;
+    padding: 1rem 1rem;
     margin: 0.7rem;
 }
 
 .CardName {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
 
+.CardName__title {
+    text-align: center;
+
+    width: 80%;
 }
 
 .InputFields {
@@ -43,7 +81,9 @@
 
 .AddNewButton {
     width: 8rem;
+    margin-right: 0;
 }
+
 .ButtonArea {
     margin-bottom: 8px;
     margin-top: 8px;

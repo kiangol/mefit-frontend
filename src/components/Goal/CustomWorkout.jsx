@@ -116,37 +116,42 @@ const CustomWorkout = ({preWorkouts}) => {
     }
     return (
         <>
-
             <form className={styles.Form} onSubmit={handleCreateCustomWorkout}>
-                <div className={styles.NameInput}>
-                    <label>Name your custom program</label>
-                    <input type={"text"}
-                           required
-                           placeholder={"Workout name"}
-                           id={"name"}
-                           onChange={handleOnCustomWorkoutChange}
-                    />
-                </div>
-                <div className={styles.SelectInput}>
-                    <label>Select a category</label>
-                    <select
-                        id={"type"}
-                        defaultValue={"Select category"}
-                        onChange={handleOnCustomWorkoutChange}
-                    >
-                        <option value={"0"}>Select type</option>
-                        <option value={"Upper body"}>Upper body</option>
-                        <option value={"Lower body"}>Lower body</option>
-                        <option value={"Stamina"}>Stamina</option>
-                    </select>
-                </div>
 
+                <div className={styles.Title}>
+                    <h1>Create Workout</h1>
+                </div>
+                <div className={styles.NameAndTypeArea}>
+                    <div className={styles.NameInput}>
+                        <label>Workout Name</label>
+                        <input type={"text"}
+                               required
+                               placeholder={"Workout name"}
+                               id={"name"}
+                               onChange={handleOnCustomWorkoutChange}
+                        />
+                    </div>
+                    <div className={styles.SelectInput}>
+                        <label>Select a category</label>
+                        <select
+                            className={styles.SelectBox}
+                            id={"type"}
+                            defaultValue={"Select category"}
+                            onChange={handleOnCustomWorkoutChange}
+                        >
+                            <option value={"0"}>Select type</option>
+                            <option value={"Upper body"}>Upper body</option>
+                            <option value={"Lower body"}>Lower body</option>
+                            <option value={"Stamina"}>Stamina</option>
+                        </select>
+                    </div>
+                </div>
                 <div className={styles.GridForCards}>
                     {exercises &&
                     exercises.map((exercise) => (
                         <div className={styles.CardForExercises}>
                             <div className={styles.CardName}>
-                                <h5 key={exercise.id}>{exercise.name}</h5>
+                                <h5 className={styles.CardName__title} key={exercise.id}>{exercise.name}</h5>
                             </div>
                             <div className={styles.InputFields}>
                                 <label>Repetitions</label>
@@ -178,17 +183,17 @@ const CustomWorkout = ({preWorkouts}) => {
                 </div>
 
                 <div>
-                    <h4>Selected Exercises:</h4>
+                    <h3>Exercises added:</h3>
                     <ul>
                         {selectedExercisesToShow &&
                         selectedExercisesToShow.map((exercise) => (
                             <li key={exercise.id}>
-                                {exercise.name}
+                                Added: {exercise.name}
                             </li>
                         ))}
                     </ul>
                 </div>
-                <button type={"submit"}>Create Custom Program</button>
+                <button className={styles.CreateWorkoutButton} type={"submit"}>Create Custom Program</button>
             </form>
         </>
     )

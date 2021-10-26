@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../../hoc/withKeycloak";
 import {list} from "../../api/ProgramAPI";
+import styles from "../Goal/NoGoalForWeek.module.css"
 import {createGoal, updateGoal, updateWorkoutInGoal} from "../../api/GoalAPI";
 
 const NoGoalForWeek = ({profile}) => {
@@ -51,19 +52,19 @@ const NoGoalForWeek = ({profile}) => {
     }
 
     return (
-        <>
+        <section className={styles.NoGoalsArea}>
             {programs &&
             programs.map((program) => (
-                <>
+                <section className={styles.ProgramCard}>
                     <h4 key={program.name}>{program.name}</h4>
-                    <p key={program.id}>Category: {program.category}</p>
+                    <h5 key={program.id}>Category: {program.category}</h5>
                     <button key={program.category} type={"button"}
-                            onClick={() => handleSetProgramAsGoalClick(program)}>Set as goal
+                            onClick={() => handleSetProgramAsGoalClick(program)}>Set Goal
                     </button>
-                </>
+                </section>
             ))
             }
-        </>
+        </section>
     )
 }
 
