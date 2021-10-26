@@ -35,7 +35,15 @@ const Header = () => {
                         <span onClick={goToProfile}>{name}</span>
                     </div>
                     <div>
-                        <button className={styles.logoutButton} type={"logoutButton"} onClick={handleLogoutClick}>Log out</button>
+                        <button className={styles.logoutButton} type={"logoutButton"} onClick={handleLogoutClick}>
+                            <div style={{justifyContent:"center"}}>
+
+                            Log out
+                            <span className="material-icons">
+                                logout
+                            </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
                 }

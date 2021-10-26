@@ -37,8 +37,6 @@ const LoginForm = ({onRegisterNewUserClick}) => {
 
             <form className={"mt-3"} onSubmit={onFormSubmit} >
                 <p>Welcome to MeFit, the place to get fit!</p>
-
-
                 <h1>Get started on MeFit</h1>
 
                 {/*<div className="mb-3">*/}
@@ -61,7 +59,12 @@ const LoginForm = ({onRegisterNewUserClick}) => {
                 {/*    />*/}
                 {/*</div>*/}
 
-                <button type={"submit"} className={"btn btn-warning btn-lg"}>Login</button>
+                <button type={"submit"} className={"btn btn-warning btn-lg"} style={{verticalAlign: "middle"}}>
+                    Login
+                    <span className="material-icons">
+                                login
+                            </span>
+                </button>
                 {/*<button type={"button"} className={"btn btn-primary btn-lg"} onClick={onRegisterNewUserClick}>Sign up*/}
                 {/*</button>*/}
             </form>
