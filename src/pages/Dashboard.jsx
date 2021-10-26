@@ -61,18 +61,7 @@ const Dashboard = () => {
                 setProgramMap(categories);
             }
         };
-
-        const fetchProfile = async () => {
-            const {data, error} = await listOne(username.username)
-            if (error) {
-                setError(error)
-                console.log(error)
-            } else {
-                    setUserId(data)
-            }
-        }
         fetchData();
-        fetchProfile()
     }, []);
 
     const handleCategorySelect = event => {

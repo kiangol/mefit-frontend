@@ -4,9 +4,7 @@ import {list, listOne} from "../api/ProfileAPI";
 import StatusForOneGoal from "../components/Goal/StatusForOneGoal";
 import KeycloakService from "../services/KeycloakService";
 import NoGoalForWeek from "../components/Goal/NoGoalForWeek";
-import CreateCustomProgram from "../components/Goal/CustomWorkout";
 import AddCustomWorkouts from "../components/Goal/CustomWorkout";
-import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
 import Calendar from "react-calendar";
 
 
@@ -31,7 +29,7 @@ const Goals = () => {
                 console.log(error)
             } else {
                 setProfile(data);
-                if (data.goal) {
+                if (data) {
                     setCurrentGoal(data.goal);
                     setGoalInThisWeek(isGoalThisWeek(data.goal.endDate));
                 }

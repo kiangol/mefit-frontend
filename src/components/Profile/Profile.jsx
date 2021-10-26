@@ -41,15 +41,15 @@ const Profile = ({profile}) => {
                     </div>
                     <div className={styles.profileCard__body}>
                         <ul className="list-group list-group-flush">
+                            <h5>Fitness level: {profile.fitnessScore}</h5>
                             <h5>{profile.height} cm</h5>
                             <h5>{profile.weight} kg</h5>
                             <h5>BMI {Math.round(profile.bmi * 10) / 10}</h5>
                         </ul>
                     </div>
                     <div className={styles.profileCard__body}>
-                        <a href="#" className={styles.a} style={{margin: "1rem"}} onClick={onEditClick}>Edit</a>
-                        <a href="#" className={styles.a} style={{color: "red", margin: "1rem"}} onClick={deleteProfile}>Delete
-                            profile</a>
+                        <button className={styles.a} style={{color: "black", margin: "0.5rem"}} onClick={onEditClick}>Edit</button>
+                        <button className={styles.a} style={{color: "red", margin: "0.5rem"}} onClick={deleteProfile}>Delete profile</button>
                     </div>
                 </div>
             </div>
