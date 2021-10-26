@@ -7,7 +7,7 @@ import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
 import {Button} from "react-bootstrap";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -74,10 +74,11 @@ const Dashboard = () => {
                 for (let program of data) {
                     categories.add(program.category)
                     console.log(program.name)
-                    if (data.name === "Beginner"){
-                        console.log("dete")}
+                    if (data.name === "Beginner") {
+                        console.log("dete")
+                    }
 
-                    if (programGroupedByCategory.has(program.category)){
+                    if (programGroupedByCategory.has(program.category)) {
                         programGroupedByCategory.get(program.category).push(program);
                     } else {
                         programGroupedByCategory.set(program.category, [program])
@@ -97,15 +98,9 @@ const Dashboard = () => {
         setCurrentPrograms(categoryMap.get(event.target.value))
     }
 
-    const history = useHistory();
-
-    const onProfileClick = () => {
-        history.push("/profile");
-    };
-
     return (
         <>
-        <h1>Dashboard</h1>
+            <h1>Dashboard</h1>
 
             {userId &&
             <GoalsDashBoard userGoal={userId.goal}/>
@@ -127,10 +122,12 @@ const Dashboard = () => {
             </section>
             <section>
                 {!profile &&
-                    <>
-                <h2>Create a profile for more stuff here!</h2>
-                        <Button className={"btn btn-warning btn-lg"} onClick={onProfileClick}>Go to profile page</Button>
-                    </>
+                <>
+                    <h2>Create a profile for more stuff here!</h2>
+                    <Link to="/profile">
+                        <Button className={"btn btn-warning btn-lg"}>Go to profile page</Button>
+                    </Link>
+                </>
                 }
             </section>
         </>
