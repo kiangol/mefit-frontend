@@ -95,15 +95,10 @@ const Goals = () => {
     }
 
     return (
-        <>
-            <section className={styles.GoalContainer}>
-                <div className="calendar">
-                    <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange} value={calDate}/>
-                </div>
+        <section className={styles.GoalContainer}>
 
-                {!currentGoal &&
-                <NoGoalForWeek />
-                }
+            <section className={styles.GoalContainer}>
+                <h1>Goals</h1>
 
                 {currentGoal &&
                 <StatusForOneGoal  goal={currentGoal}/>
@@ -117,7 +112,7 @@ const Goals = () => {
                 <AddCustomWorkouts preWorkouts={currentGoal.program.workouts}/>
                 }
             </section>
-        </>
+        </section>
     )
 }
 

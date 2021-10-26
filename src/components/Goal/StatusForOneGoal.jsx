@@ -50,9 +50,10 @@ const StatusForOneGoal = ({goal}) => {
     return (
         <>
             <section className={styles.Status}>
+                <h1 className={styles.Title}>Status for Goal</h1>
                 <section className={styles.StatusTitleText}>
-                    <h3>Current goal end date: {date}</h3>
-                    <h3>{workouts.completed.length} out of {allWorkouts.length} workouts done for this goal.</h3>
+                    <h3>Goal end date: {date}</h3>
+                    <h3>{workouts.completed.length} / {allWorkouts.length} workouts completed</h3>
                 </section>
                 <section className={styles.PendingCompletedArea}>
                     <div className={styles.List}>
