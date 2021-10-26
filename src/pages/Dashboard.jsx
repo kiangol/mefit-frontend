@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
+import styled from "styled-components";
 import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
 
 const Dashboard = () => {
+    const Container = styled.div`
+      display: flex;
+      justify-content: center;
+      //align-items: center;
+      //height: 100vh;
+    `;
 
     const [userId, setUserId] = useState()
     const [programs, setPrograms] = useState();
@@ -26,6 +33,17 @@ const Dashboard = () => {
     });
 
     useEffect(() => {
+
+        const fetchProfile = async () => {
+            const {data, error} = await listOne(username.username);
+            if (error) {
+                console.log(error);
+                setError(error);
+                console.log(error);
+            } else {
+                setUserId(data);
+            }
+        };
 
         const fetchData = async () => {
             const {data, error} = await list();
@@ -54,35 +72,8 @@ const Dashboard = () => {
                 setProgramMap(categories);
             }
         };
-
-        const fetchProfile = async () => {
-            const {data, error} = await listOne(username.username)
-            if (error) {
-                setError(error)
-                console.log(error)
-            } else {
-                    setUserId(data)
-                try {
-                    setuserBMI(userId.bmi.valueOf())
-                    if (userBMI > 24){
-                        setBmiHigh(true)
-                        console.log(programs.name.valueOf())
-                        for (const program in programs) {
-                        /*    console.log("ert")
-                            console.log(program.toString())
-                            console.log(program.name.valueOf())
-                        */}
-                    } else {
-                        setBmiNormal(true)
-                    }
-                } catch (error) {
-                    setError(error)
-                    console.log(error)
-                }
-            }
-        }
+        fetchProfile();
         fetchData();
-        fetchProfile()
     }, []);
 
     const handleCategorySelect = event => {
@@ -105,7 +96,7 @@ const Dashboard = () => {
                 }
             </select>
             <section>
-                <h1>Suggested programs</h1>
+                <h1>Programs</h1>
                 {currentPrograms && (
                     <ProgramList programList={currentPrograms}/>
                 )}
