@@ -43,7 +43,6 @@ const Goals = () => {
 
 
     const isGoalThisWeek = (date) => {
-
         const dateOfGoal = new Date(date);
         const dateObj = new Date();
         const today = dateObj;
