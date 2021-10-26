@@ -1,16 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import {list} from "../api/ProgramAPI";
-import styled from "styled-components";
 import ProgramList from "../components/Program/ProgramList";
 
 const Programs = () => {
-    const Container = styled.div`
-      display: flex;
-      justify-content: center;
-      //align-items: center;
-      //height: 100vh;
-    `;
 
     const [programs, setPrograms] = useState();
     const [currentPrograms, setCurrentPrograms] = useState()
@@ -30,6 +23,7 @@ const Programs = () => {
             } else {
                 setPrograms(data);
                 setCurrentPrograms(data);
+                console.log(data);
                 for (let program of data) {
                     categories.add(program.category)
                     if (programGroupedByCategory.has(program.category)){

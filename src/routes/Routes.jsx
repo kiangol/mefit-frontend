@@ -12,14 +12,13 @@ import Programs from "../pages/Programs";
 import Workouts from "../pages/Workouts";
 import ProfilePage from "../pages/ProfilePage";
 import Contributors from "../pages/Contributors";
-import NewWorkout from "../pages/NewWorkout";
 import Goals from "../pages/Goals";
-import KeycloakService from "../services/KeycloakService";
 import EditProfile from "../pages/EditProfile";
+import ProfileQuestionnaire from "../components/Profile/ProfileQuestionnaire";
 
 // Might redirect "/" to "/login" and have "/" as dashboard.
 const Routes = () => {
-    const isLoggedIn = KeycloakService.isLoggedIn()
+
 
 
     return (
@@ -36,9 +35,9 @@ const Routes = () => {
                     <Route exact path={"/goals"} component={Goals}/>
                     <Route exact path={"/programs"} component={Programs}/>
                     <Route exact path={"/workouts"} component={Workouts}/>
-                    <Route exact path={"/workouts/create"} component={NewWorkout}/>
                     <Route exact path={"/profile"} component={ProfilePage}/>
                     <Route exact path={"/profile/edit"} component={EditProfile}/>
+                    <Route exact path={"/profile/questionnaire"} component={ProfileQuestionnaire}/>
                     <Route exact path={"/contributor"} component={Contributors}/>
                     <Route path={"*"} component={NotFound}/>
                 </Switch>

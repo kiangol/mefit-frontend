@@ -28,7 +28,6 @@ const ProfileEdit = ({toEdit}) => {
     const onFormSubmit = async (event) => {
         event.preventDefault();
         await update(profile);
-        alert('Profile updated');
         history.push("/profile")
     };
 

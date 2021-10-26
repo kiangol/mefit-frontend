@@ -48,6 +48,7 @@ const ModalContent = styled.div`
   color: var(--text-color);
   p {
     margin-bottom: 1rem;
+    margin-left: 1rem;
   }
   button {
     padding: 10px 24px;
@@ -73,10 +74,10 @@ export const Modal = ({showModal, setShowModal, exercise}) => {
 
     const animation = useSpring({
         config: {
-            duration: 250
+            duration: 40
         },
         opacity: showModal ? 1 : 0,
-        transform: showModal ? `translateY(0%)` : `translateY(-100%)`
+        transform: showModal ? `scale(100%)` : `scale(90%)`
     });
 
     const closeModal = e => {

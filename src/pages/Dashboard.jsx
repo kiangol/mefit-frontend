@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
-import GoalsDashBoard from "./GoalsDashBoard";
+import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
 import styled from "styled-components";
 import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
+import {listOne} from "../api/ProfileAPI";
+import KeycloakService from "../services/KeycloakService";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -13,6 +15,7 @@ const Dashboard = () => {
       //height: 100vh;
     `;
 
+    const [userId, setUserId] = useState()
     const [programs, setPrograms] = useState();
     const [currentPrograms, setCurrentPrograms] = useState()
     const [categoryMap, setCategoryMap] = useState()
@@ -21,7 +24,27 @@ const Dashboard = () => {
     const categories = new Set();
     const programGroupedByCategory = new Map();
 
+    const [bmiHigh, setBmiHigh] = useState()
+    const [bmiNormal, setBmiNormal] = useState()
+    const [userBMI, setuserBMI] = useState()
+
+    const [username] = useState({
+        username: KeycloakService.getUsername()
+    });
+
     useEffect(() => {
+
+        const fetchProfile = async () => {
+            const {data, error} = await listOne(username.username);
+            if (error) {
+                console.log(error);
+                setError(error);
+                console.log(error);
+            } else {
+                setUserId(data);
+            }
+        };
+
         const fetchData = async () => {
             const {data, error} = await list();
             if (error) {
@@ -33,6 +56,10 @@ const Dashboard = () => {
                 setCurrentPrograms(data);
                 for (let program of data) {
                     categories.add(program.category)
+                    console.log(program.name)
+                    if (data.name === "Beginner"){
+                        console.log("dete")}
+
                     if (programGroupedByCategory.has(program.category)){
                         programGroupedByCategory.get(program.category).push(program);
                     } else {
@@ -45,6 +72,7 @@ const Dashboard = () => {
                 setProgramMap(categories);
             }
         };
+        fetchProfile();
         fetchData();
     }, []);
 
@@ -55,7 +83,9 @@ const Dashboard = () => {
     return (
         <>
         <h1>Dashboard</h1>
-        <GoalsDashBoard/>
+            {userId &&
+            <GoalsDashBoard userGoal={userId.goal}/>
+            }
             <select onChange={handleCategorySelect}>
                 <option key={"0"} value={"Show all"}>Show all</option>
                 {programMap &&
