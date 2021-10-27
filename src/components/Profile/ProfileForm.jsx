@@ -3,7 +3,6 @@ import withKeycloak from "../../hoc/withKeycloak";
 import {create} from '../../api/ProfileAPI';
 import KeycloakService from "../../services/KeycloakService";
 import {useHistory} from "react-router-dom";
-import ProfileQuestionnaire from "./ProfileQuestionnaire";
 
 const ProfileForm = () => {
 
@@ -100,7 +99,6 @@ const ProfileForm = () => {
             fitness = 5
         }
         return fitness;
-
     }
 
 
@@ -125,20 +123,6 @@ const ProfileForm = () => {
                            className="form-control"
                            id="weight"
                            placeholder="Weight in kg"
-                           onChange={onNewProfileChange}
-                    />
-                    <label htmlFor="disabilities">Disabilities</label>
-                    <input type="text"
-                           className="form-control"
-                           id="disabilities"
-                           placeholder="Disabilities, separated by comma"
-                           onChange={onNewProfileChange}
-                    />
-                    <label htmlFor="medicalConditions">Medical conditions</label>
-                    <input type="text"
-                           className="form-control"
-                           id="medicalConditions"
-                           placeholder="Medical conditions, separated by comma"
                            onChange={onNewProfileChange}
                     />
                     <br/>
@@ -200,7 +184,7 @@ const ProfileForm = () => {
                     <select className="q7" onChange={handleSelectChange}>
                         <option value="5">Nothing</option>
                         <option value="10">A shoe box</option>
-                        <option value="15">A low fence</option>
+                        <option value="15">A South African</option>
                         <option value="20">A high hurdle</option>
                     </select>
                     <br/>
