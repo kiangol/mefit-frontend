@@ -32,7 +32,7 @@ const GoalsDashBoard = ({userGoal}) => {
 
     const daysToGoalDeadline = (date) => {
         var now = new Date().getTime();
-        const dateConv = new Date("2021-10-29 12:00:00").getTime()
+        const dateConv = new Date(date).getTime()
 
         var distance = dateConv - now
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
