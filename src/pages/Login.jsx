@@ -16,7 +16,7 @@ const Login = () => {
     return (
         <>
             {!isLoggedIn &&
-            <LoginForm onRegisterNewUserClick={onRegisterNewUserClick}/>
+            <LoginForm />
             }
             {isLoggedIn &&
             history.push("/dashboard")}
