@@ -1,3 +1,42 @@
 .logoWithText {
     filter: var(--filter-color);
 }
+
+.LandingPage {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+}
+
+.MefitLogo {
+    width: 50%;
+    align-self: center;
+}
+
+.TextArea {
+width: 100%;
+    align-self: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.TextArea button {
+    align-self: center;
+    margin-top: 5rem;
+    padding: 0.5rem 1rem;
+    width: 40%;
+    font-size: xx-large;
+}
+
+.TextArea button span {
+    font-size: xx-large;
+    margin-left: 10px;
+}
+
+
+
+.TextArea button:hover {
+    transform: scale(1.05);
+}
