@@ -6,6 +6,8 @@ import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
+import {Button} from "react-bootstrap";
+import {Link, useHistory} from "react-router-dom";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -32,6 +34,21 @@ const Dashboard = () => {
         username: KeycloakService.getUsername()
     });
 
+    const [profile, setProfile] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data, error} = await listOne(username.username);
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(data);
+                setProfile(data);
+            }
+        };
+        fetchData();
+    }, []);
+
     useEffect(() => {
 
         const fetchProfile = async () => {
@@ -57,10 +74,11 @@ const Dashboard = () => {
                 for (let program of data) {
                     categories.add(program.category)
                     console.log(program.name)
-                    if (data.name === "Beginner"){
-                        console.log("dete")}
+                    if (data.name === "Beginner") {
+                        console.log("dete")
+                    }
 
-                    if (programGroupedByCategory.has(program.category)){
+                    if (programGroupedByCategory.has(program.category)) {
                         programGroupedByCategory.get(program.category).push(program);
                     } else {
                         programGroupedByCategory.set(program.category, [program])
@@ -82,7 +100,8 @@ const Dashboard = () => {
 
     return (
         <>
-        <h1>Dashboard</h1>
+            <h1>Dashboard</h1>
+
             {userId &&
             <GoalsDashBoard userGoal={userId.goal}/>
             }
@@ -102,7 +121,14 @@ const Dashboard = () => {
                 )}
             </section>
             <section>
-
+                {!profile &&
+                <>
+                    <h2>Create a profile for more stuff here!</h2>
+                    <Link to="/profile">
+                        <Button className={"btn btn-warning btn-lg"}>Go to profile page</Button>
+                    </Link>
+                </>
+                }
             </section>
         </>
     )
