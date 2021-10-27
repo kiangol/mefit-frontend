@@ -100,19 +100,6 @@ const GoalsDashBoard = ({userGoal}) => {
         }
     }
 
-    /*
-                            <div className="calendar">
-                                <Calendar className={"calendar_dash"} id={"endDate"} onChange={onChange}
-                                          value={calDate}/>
-                            </div>
-
-                                {userGoal && <>
-                                    <h2>Your goals</h2>
-                                    <p>{userGoal.id} {userGoal.program.name}</p>
-                                </>
-                                }
-                                {!userGoal && <> <p>You have no Goals</p></>}*/
-
     return (
         <>
             <div className={styles.container}>
@@ -132,6 +119,8 @@ const GoalsDashBoard = ({userGoal}) => {
                     <section>
                         <article className="col">
                             <div className="card-body">
+                                {userGoal &&
+                                <>
 
                                 <section className={styles.DeadLine}>
                                     <article className={styles.DaysLeft}>
@@ -152,6 +141,10 @@ const GoalsDashBoard = ({userGoal}) => {
                                         </div>
                                     </article>
                                 </section>
+                                </>
+                                }
+
+
                                 {!userGoal &&
                                 <>
                                     <h2>Goals</h2>
