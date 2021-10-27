@@ -6,7 +6,8 @@ import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
 import KeycloakService from "../services/KeycloakService";
-import {useHistory} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import {Link, useHistory} from "react-router-dom";
 
 const Dashboard = () => {
     const Container = styled.div`
@@ -15,7 +16,7 @@ const Dashboard = () => {
       //align-items: center;
       //height: 100vh;
     `;
-    const history = useHistory()
+
     const [userId, setUserId] = useState()
     const [programs, setPrograms] = useState();
     const [currentPrograms, setCurrentPrograms] = useState()
@@ -29,11 +30,24 @@ const Dashboard = () => {
     const [bmiNormal, setBmiNormal] = useState()
     const [userBMI, setuserBMI] = useState()
 
-    const [username, firstname] = useState({
-        username: KeycloakService.getUsername(),
-        firstname: KeycloakService.getFirstName(),
-        lastname: KeycloakService.getLastName()
+    const [username] = useState({
+        username: KeycloakService.getUsername()
     });
+
+    const [profile, setProfile] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data, error} = await listOne(username.username);
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(data);
+                setProfile(data);
+            }
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
 
@@ -60,10 +74,11 @@ const Dashboard = () => {
                 for (let program of data) {
                     categories.add(program.category)
                     console.log(program.name)
-                    if (data.name === "Beginner"){
-                        console.log("dete")}
+                    if (data.name === "Beginner") {
+                        console.log("dete")
+                    }
 
-                    if (programGroupedByCategory.has(program.category)){
+                    if (programGroupedByCategory.has(program.category)) {
                         programGroupedByCategory.get(program.category).push(program);
                     } else {
                         programGroupedByCategory.set(program.category, [program])
@@ -83,25 +98,13 @@ const Dashboard = () => {
         setCurrentPrograms(categoryMap.get(event.target.value))
     }
 
-    function goToProfileClick(){
-        history.push("/profile")
-    }
-
     return (
         <>
-            {!userId &&
-                <>
-                    <h2>Welcome to MeFit {username.firstname} {username.lastname}!</h2>
-                    <br/>
-                    <p>To get started with MeFit go to profile and setup your profile!</p>
-                    <button onClick={goToProfileClick}>Create Profile</button>
-                    <br/>
-                    <br/>
-                    <br/>
-                </>
-            }
-            {userId && <>
+            <h1>Dashboard</h1>
+
+            {userId &&
             <GoalsDashBoard userGoal={userId.goal}/>
+            }
             <select onChange={handleCategorySelect}>
                 <option key={"0"} value={"Show all"}>Show all</option>
                 {programMap &&
@@ -117,9 +120,16 @@ const Dashboard = () => {
                     <ProgramList programList={currentPrograms}/>
                 )}
             </section>
-            </>
-            }
-
+            <section>
+                {!profile &&
+                <>
+                    <h2>Create a profile for more stuff here!</h2>
+                    <Link to="/profile">
+                        <Button className={"btn btn-warning btn-lg"}>Go to profile page</Button>
+                    </Link>
+                </>
+                }
+            </section>
         </>
     )
 }
