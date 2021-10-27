@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import withKeycloak from "../hoc/withKeycloak";
 import GoalsDashBoard from "../components/Dashboard/GoalsDashBoard";
 import styled from "styled-components";
+import design from "../components/Dashboard/Dashboard.module.css"
 import {list} from "../api/ProgramAPI";
 import ProgramList from "../components/Program/ProgramList";
 import {listOne} from "../api/ProfileAPI";
@@ -30,8 +31,10 @@ const Dashboard = () => {
     const [bmiNormal, setBmiNormal] = useState()
     const [userBMI, setuserBMI] = useState()
 
-    const [username] = useState({
-        username: KeycloakService.getUsername()
+    const [username, firstName, lastName] = useState({
+        username: KeycloakService.getUsername(),
+        firstName: KeycloakService.getFirstName(),
+        lastName: KeycloakService.getLastName()
     });
 
     const [profile, setProfile] = useState();
@@ -100,11 +103,26 @@ const Dashboard = () => {
 
     return (
         <>
-            <h1>Dashboard</h1>
-
+            <section>
+                {!profile &&
+                <>
+                    <div className={design.dashNoProfile}>
+                        <h2>Welcome {username.firstName} {username.lastName}!</h2>
+                        <br/>
+                        <p>To get started with MeFit create your profile</p>
+                        <Link to="/profile">
+                            <Button className={"btn btn-warning btn-lg"}>Go to profile page</Button>
+                        </Link>
+                    </div>
+                </>
+                }
+            </section>
+            <br/>
             {userId &&
             <GoalsDashBoard userGoal={userId.goal}/>
             }
+            {userId &&
+                <>
             <select onChange={handleCategorySelect}>
                 <option key={"0"} value={"Show all"}>Show all</option>
                 {programMap &&
@@ -114,22 +132,16 @@ const Dashboard = () => {
                 )
                 }
             </select>
+
             <section>
-                <h1>Programs</h1>
+                <h1>Suggested Programs</h1>
                 {currentPrograms && (
                     <ProgramList programList={currentPrograms}/>
                 )}
             </section>
-            <section>
-                {!profile &&
-                <>
-                    <h2>Create a profile for more stuff here!</h2>
-                    <Link to="/profile">
-                        <Button className={"btn btn-warning btn-lg"}>Go to profile page</Button>
-                    </Link>
+
                 </>
-                }
-            </section>
+            }
         </>
     )
 }
