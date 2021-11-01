@@ -32,3 +32,5 @@ The repository for the back-end providing the REST API can be found on [https://
 ## Documentation
 
 Documentation for the REST API is on [https://success-mefit.herokuapp.com/docs.html](https://success-mefit.herokuapp.com/docs.html)
+
+mefit
